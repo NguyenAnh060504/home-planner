@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nunito";
+  src: url("/assets/fonts/Nunito.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Dark Fantasy Magic Garden - Deep Night Palette */
+    --background: 97 0.01 80;
+    --foreground: 25 0.05 265;
+
+    --card: 100 0.005 80;
+    --card-foreground: 25 0.05 265;
+
+    --popover: 100 0.005 80;
+    --popover-foreground: 25 0.05 265;
+
+    --primary: 65 0.22 40;
+    --primary-foreground: 99 0.005 80;
+
+    --secondary: 78 0.18 150;
+    --secondary-foreground: 99 0.005 80;
+
+    --muted: 93 0.03 80;
+    --muted-foreground: 55 0.05 265;
+
+    --accent: 72 0.22 200;
+    --accent-foreground: 99 0.005 80;
+
+    --destructive: 55 0.25 25;
+    --destructive-foreground: 99 0.005 80;
+
+    --border: 88 0.04 80;
+    --input: 95 0.02 80;
+    --ring: 65 0.22 40;
+
+    --radius: 1rem;
+
+    /* Magic-specific tokens */
+    --magic-gold: 82 0.18 85;
+    --magic-purple: 55 0.28 305;
+    --magic-blue: 50 0.24 265;
+    --magic-green: 70 0.24 145;
+    --magic-glow: 78 0.32 310;
+
+    --chart-1: 65 0.22 40;
+    --chart-2: 70 0.22 150;
+    --chart-3: 68 0.22 290;
+    --chart-4: 72 0.22 200;
+    --chart-5: 75 0.18 55;
+
+    --sidebar: 100 0.005 80;
+    --sidebar-foreground: 25 0.05 265;
+    --sidebar-primary: 65 0.22 40;
+    --sidebar-primary-foreground: 99 0.005 80;
+    --sidebar-accent: 72 0.22 200;
+    --sidebar-accent-foreground: 99 0.005 80;
+    --sidebar-border: 88 0.04 80;
+    --sidebar-ring: 65 0.22 40;
+    /* Font tokens */
+    --font-display: "Nunito", sans-serif;
+    --font-body: "Nunito", sans-serif;
+    --font-mono: "JetBrainsMono", monospace;
+
+    /* Room-specific gradients (for reference) */
+    --room-living: 65 0.22 25;
+    --room-bedroom: 60 0.18 290;
+    --room-kitchen: 65 0.24 130;
+    --room-bathroom: 65 0.2 190;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+}
+
+/* Room gradient backgrounds */
+.room-living {
+  background: linear-gradient(
+    135deg,
+    oklch(88 0.18 55) 0%,
+    oklch(82 0.2 40) 50%,
+    oklch(78 0.16 50) 100%
+  );
+  min-height: 360px;
+}
+
+.room-bedroom {
+  background: linear-gradient(
+    135deg,
+    oklch(82 0.18 290) 0%,
+    oklch(75 0.2 280) 50%,
+    oklch(72 0.16 300) 100%
+  );
+  min-height: 360px;
+}
+
+.room-kitchen {
+  background: linear-gradient(
+    135deg,
+    oklch(85 0.2 130) 0%,
+    oklch(80 0.22 120) 50%,
+    oklch(75 0.18 140) 100%
+  );
+  min-height: 360px;
+}
+
+.room-bathroom {
+  background: linear-gradient(
+    135deg,
+    oklch(83 0.18 190) 0%,
+    oklch(78 0.2 180) 50%,
+    oklch(74 0.16 200) 100%
+  );
+  min-height: 360px;
+}
+
+/* Drag-and-drop item card */
+.item-card {
+  @apply rounded-2xl bg-card shadow-sm hover:shadow-md transition-all duration-200 cursor-grab active:cursor-grabbing border-2 border-border hover:border-primary;
+}
+
+.item-card.dragging {
+  @apply opacity-75 shadow-2xl;
+}
+
+.item-emoji {
+  @apply text-5xl leading-none;
+}
+
+/* Drop zone feedback */
+.drop-zone.drag-over {
+  background: oklch(90 0.12 40 / 0.35) !important;
+  border: 2px dashed oklch(65 0.22 40) !important;
+  transform: scale(1.06);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(95 0.01 80);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(80 0.06 80);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(65 0.1 40);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

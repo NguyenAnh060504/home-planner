@@ -1,0 +1,24 @@
+{
+  "overview": "A game-like home inventory management app where users type item names to auto-find matching emojis, then drag and drop them into interactive room grids. Manage multiple rooms like Living Room, Bedroom, Kitchen, and Bathroom with a bright, playful interface.",
+  "features": [
+    "Type item name to auto-find matching emoji/icon",
+    "Drag and drop items into room grid layouts",
+    "4 default rooms: Living Room, Bedroom, Kitchen, Bathroom",
+    "Create and manage custom rooms",
+    "Persistent room layouts saved automatically",
+    "Bright colorful game-like UI with room-specific themes",
+    "Undo last action support",
+    "Remove or reposition placed items"
+  ],
+  "category": "productivity",
+  "tags": [
+    "home",
+    "inventory",
+    "game",
+    "drag-drop",
+    "emoji",
+    "room-planner",
+    "interactive"
+  ],
+  "last_updated": "2026-05-07T06:20:09.790Z"
+}

@@ -1,0 +1,37 @@
+type RoomId = nat;
+type Room = 
+ record {
+   grid: vec PlacedItem;
+   id: RoomId;
+   items: vec Item;
+   name: text;
+ };
+type PlacedItem = 
+ record {
+   itemId: ItemId;
+   pos: GridPos;
+ };
+type ItemId = nat;
+type Item = 
+ record {
+   color: opt text;
+   emoji: text;
+   id: ItemId;
+   name: text;
+ };
+type GridPos = 
+ record {
+   col: nat;
+   row: nat;
+ };
+service : {
+  addItem: (roomId: RoomId, name: text, emoji: text, color: opt text) ->
+   (opt Item);
+  createRoom: (name: text) -> (Room);
+  deleteRoom: (roomId: RoomId) -> (bool);
+  getRooms: () -> (vec Room);
+  moveItem: (roomId: RoomId, fromPos: GridPos, toPos: GridPos) -> (bool);
+  placeItem: (roomId: RoomId, itemId: ItemId, pos: GridPos) -> (bool);
+  removeFromGrid: (roomId: RoomId, pos: GridPos) -> (bool);
+  removeItem: (roomId: RoomId, itemId: ItemId) -> (bool);
+}
