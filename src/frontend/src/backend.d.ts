@@ -7,35 +7,51 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export interface GridPos {
-    col: bigint;
-    row: bigint;
+export interface BodyPart {
+    element: Element;
+    mutation: MutationVariant;
 }
-export type RoomId = bigint;
-export interface Room {
-    id: RoomId;
-    grid: Array<PlacedItem>;
-    name: string;
-    items: Array<Item>;
+export type WormId = bigint;
+export interface Worm {
+    id: WormId;
+    element: Element;
+    body: BodyPart;
+    head: BodyPart;
+    tail: BodyPart;
 }
-export interface Item {
-    id: ItemId;
-    name: string;
-    color?: string;
-    emoji: string;
+export interface NewWorm {
+    element: Element;
+    body: BodyPart;
+    head: BodyPart;
+    tail: BodyPart;
 }
-export interface PlacedItem {
-    pos: GridPos;
-    itemId: ItemId;
+export enum Element {
+    Grass = "Grass",
+    Water = "Water",
+    Electric = "Electric",
+    Earth = "Earth"
 }
-export type ItemId = bigint;
+export enum MutationVariant {
+    Gradient = "Gradient",
+    Solid = "Solid",
+    Metallic = "Metallic",
+    Spotted = "Spotted",
+    Striped = "Striped"
+}
 export interface backendInterface {
-    addItem(roomId: RoomId, name: string, emoji: string, color: string | null): Promise<Item | null>;
-    createRoom(name: string): Promise<Room>;
-    deleteRoom(roomId: RoomId): Promise<boolean>;
-    getRooms(): Promise<Array<Room>>;
-    moveItem(roomId: RoomId, fromPos: GridPos, toPos: GridPos): Promise<boolean>;
-    placeItem(roomId: RoomId, itemId: ItemId, pos: GridPos): Promise<boolean>;
-    removeFromGrid(roomId: RoomId, pos: GridPos): Promise<boolean>;
-    removeItem(roomId: RoomId, itemId: ItemId): Promise<boolean>;
+    addWorm(newWorm: NewWorm): Promise<{
+        __kind__: "ok";
+        ok: WormId;
+    } | {
+        __kind__: "err";
+        err: string;
+    }>;
+    deleteWorm(id: WormId): Promise<{
+        __kind__: "ok";
+        ok: null;
+    } | {
+        __kind__: "err";
+        err: string;
+    }>;
+    getWorms(): Promise<Array<Worm>>;
 }

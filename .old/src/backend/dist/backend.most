@@ -1,70 +1,26 @@
-// Version: 3.0.0
-type Data__791452850<K, V> =
-  {var count : Nat__490723111; kvs : [var ?(K, V)]};
-type GridPos__356536178 = {col : Nat; row : Nat};
-type Internal__8484328<K, V> =
-  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
-type ItemId__833640393 = Nat;
-type Item__322480688 = Item__722198638;
-type Item__722198638 =
-  {color : ?Text; emoji : Text; id : ItemId__833640393; name : Text};
-type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
-type List__415060402<T> = List__790383201<T>;
-type List__790383201<T> =
-  {
-    var blockIndex : Nat__490723111;
-    var blocks : [var [var ?T]];
-    var elementIndex : Nat__490723111
-  };
-type Map__158565046<K, V> = Map__297112838<K, V>;
-type Map__297112838<K, V> =
-  {var root : Node__46230540<K, V>; var size : Nat__490723111};
-type Map__605269027<K, V> = Map__158565046<K, V>;
+// Version: 1.0.0
+type BodyPart__784413800 =
+  {element : Element__38271132; mutation : MutationVariant__268188639};
+type Element__38271132 = {#Earth; #Electric; #Grass; #Water};
+type MutationVariant__268188639 =
+  {#Gradient; #Metallic; #Solid; #Spotted; #Striped};
 type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
-type Node__46230540<K, V> =
-  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
-type OldPlantType__429857871 = {cost : Nat; name : Text; reward : Nat};
-type OldPlayerState__9184382 =
+type WormId__640679825 = Nat;
+type Worm__854540632 =
   {
-    coins : Nat;
-    plots : [OldPlot__1052232563];
-    seedInventory : Map__605269027<Text, Nat>
+    body : BodyPart__784413800;
+    element : Element__38271132;
+    head : BodyPart__784413800;
+    id : WormId__640679825;
+    tail : BodyPart__784413800
   };
-type OldPlot__1052232563 =
-  {
-    growthPoints : Nat;
-    growthStage : Nat;
-    lastFertilized : Int;
-    lastWatered : Int;
-    plantType : ?OldPlantType__429857871
-  };
-type PlacedItem__52363266 = PlacedItem__609228751;
-type PlacedItem__609228751 =
-  {itemId : ItemId__833640393; pos : GridPos__356536178};
-type RoomId__1058574249 = RoomId__905989824;
-type RoomId__905989824 = Nat;
-type RoomInternal__613627685 =
-  {
-    var grid : [PlacedItem__52363266];
-    id : RoomId__1058574249;
-    var items : [Item__322480688];
-    name : Text
-  };
-actor ({
-  in gardenRef : Map__605269027<Principal, OldPlayerState__9184382>;
-  in plantTypes : [OldPlantType__429857871];
-  stable userRooms :
+actor {
+  stable state : {var nextWormId : Nat};
+  stable worms :
     {
-      var root :
-        Node__46230540<Principal, List__415060402<RoomInternal__613627685>>;
-      var size : Nat__490723111
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Worm__854540632]];
+      var elementIndex : Nat__490723111
     }
-}, {
-  stable userRooms :
-    {
-      var root :
-        Node__46230540<Principal, List__415060402<RoomInternal__613627685>>;
-      var size : Nat__490723111
-    }
-});
+};

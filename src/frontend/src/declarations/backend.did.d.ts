@@ -10,31 +10,34 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface GridPos { 'col' : bigint, 'row' : bigint }
-export interface Item {
-  'id' : ItemId,
-  'name' : string,
-  'color' : [] | [string],
-  'emoji' : string,
+export interface BodyPart { 'element' : Element, 'mutation' : MutationVariant }
+export type Element = { 'Grass' : null } |
+  { 'Water' : null } |
+  { 'Electric' : null } |
+  { 'Earth' : null };
+export type MutationVariant = { 'Gradient' : null } |
+  { 'Solid' : null } |
+  { 'Metallic' : null } |
+  { 'Spotted' : null } |
+  { 'Striped' : null };
+export interface NewWorm {
+  'element' : Element,
+  'body' : BodyPart,
+  'head' : BodyPart,
+  'tail' : BodyPart,
 }
-export type ItemId = bigint;
-export interface PlacedItem { 'pos' : GridPos, 'itemId' : ItemId }
-export interface Room {
-  'id' : RoomId,
-  'grid' : Array<PlacedItem>,
-  'name' : string,
-  'items' : Array<Item>,
+export interface Worm {
+  'id' : WormId,
+  'element' : Element,
+  'body' : BodyPart,
+  'head' : BodyPart,
+  'tail' : BodyPart,
 }
-export type RoomId = bigint;
+export type WormId = bigint;
 export interface _SERVICE {
-  'addItem' : ActorMethod<[RoomId, string, string, [] | [string]], [] | [Item]>,
-  'createRoom' : ActorMethod<[string], Room>,
-  'deleteRoom' : ActorMethod<[RoomId], boolean>,
-  'getRooms' : ActorMethod<[], Array<Room>>,
-  'moveItem' : ActorMethod<[RoomId, GridPos, GridPos], boolean>,
-  'placeItem' : ActorMethod<[RoomId, ItemId, GridPos], boolean>,
-  'removeFromGrid' : ActorMethod<[RoomId, GridPos], boolean>,
-  'removeItem' : ActorMethod<[RoomId, ItemId], boolean>,
+  'addWorm' : ActorMethod<[NewWorm], { 'ok' : WormId } | { 'err' : string }>,
+  'deleteWorm' : ActorMethod<[WormId], { 'ok' : null } | { 'err' : string }>,
+  'getWorms' : ActorMethod<[], Array<Worm>>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

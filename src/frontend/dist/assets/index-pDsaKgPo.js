@@ -4469,7 +4469,7 @@ function _(t, n) {
     return;
   }
   if (typeof t == "string") {
-    X$1(t);
+    X(t);
     return;
   }
   if (t instanceof Uint8Array) {
@@ -4497,7 +4497,7 @@ function tt$1(t, n) {
 }
 function nt(t, n) {
   O = Object.entries(t), I(c.Map, O.length), O.forEach(([e, i]) => {
-    X$1(e), _((n == null ? void 0 : n(i, e)) ?? i, n);
+    X(e), _((n == null ? void 0 : n(i, e)) ?? i, n);
   });
 }
 function I(t, n) {
@@ -4570,7 +4570,7 @@ function ot(t) {
 function ft(t) {
   t >= 0 ? ct(t) : ot(t);
 }
-function X$1(t) {
+function X(t) {
   k(c.TextString, v$1.encode(t));
 }
 function V(t) {
@@ -27750,175 +27750,6 @@ const Toaster = ({ ...props }) => {
     }
   );
 };
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-const toCamelCase = (string) => string.replace(
-  /^([A-Z])|[\s-_]+(\w)/g,
-  (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase()
-);
-const toPascalCase = (string) => {
-  const camelCase = toCamelCase(string);
-  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
-};
-const mergeClasses = (...classes) => classes.filter((className, index2, array) => {
-  return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index2;
-}).join(" ").trim();
-const hasA11yProp = (props) => {
-  for (const prop in props) {
-    if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
-      return true;
-    }
-  }
-};
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-var defaultAttributes = {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: 24,
-  height: 24,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2,
-  strokeLinecap: "round",
-  strokeLinejoin: "round"
-};
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const Icon = reactExports.forwardRef(
-  ({
-    color: color2 = "currentColor",
-    size = 24,
-    strokeWidth = 2,
-    absoluteStrokeWidth,
-    className = "",
-    children,
-    iconNode,
-    ...rest
-  }, ref) => reactExports.createElement(
-    "svg",
-    {
-      ref,
-      ...defaultAttributes,
-      width: size,
-      height: size,
-      stroke: color2,
-      strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
-      className: mergeClasses("lucide", className),
-      ...!children && !hasA11yProp(rest) && { "aria-hidden": "true" },
-      ...rest
-    },
-    [
-      ...iconNode.map(([tag, attrs]) => reactExports.createElement(tag, attrs)),
-      ...Array.isArray(children) ? children : [children]
-    ]
-  )
-);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const createLucideIcon = (iconName, iconNode) => {
-  const Component2 = reactExports.forwardRef(
-    ({ className, ...props }, ref) => reactExports.createElement(Icon, {
-      ref,
-      iconNode,
-      className: mergeClasses(
-        `lucide-${toKebabCase(toPascalCase(iconName))}`,
-        `lucide-${iconName}`,
-        className
-      ),
-      ...props
-    })
-  );
-  Component2.displayName = toPascalCase(iconName);
-  return Component2;
-};
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$4 = [
-  ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
-  [
-    "path",
-    {
-      d: "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
-      key: "1d0kgt"
-    }
-  ]
-];
-const House = createLucideIcon("house", __iconNode$4);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$3 = [
-  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
-  ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
-];
-const RotateCcw = createLucideIcon("rotate-ccw", __iconNode$3);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$2 = [
-  [
-    "path",
-    {
-      d: "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z",
-      key: "4pj2yx"
-    }
-  ],
-  ["path", { d: "M20 3v4", key: "1olli1" }],
-  ["path", { d: "M22 5h-4", key: "1gvqau" }],
-  ["path", { d: "M4 17v2", key: "vumght" }],
-  ["path", { d: "M5 18H3", key: "zchphs" }]
-];
-const Sparkles = createLucideIcon("sparkles", __iconNode$2);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$1 = [
-  ["path", { d: "M9 14 4 9l5-5", key: "102s5s" }],
-  ["path", { d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11", key: "f3b9sd" }]
-];
-const Undo2 = createLucideIcon("undo-2", __iconNode$1);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode = [
-  ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
-  ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
-];
-const X = createLucideIcon("x", __iconNode);
 const LayoutGroupContext = reactExports.createContext({});
 function useConstant(init) {
   const ref = reactExports.useRef(null);
@@ -35988,567 +35819,111 @@ const featureBundle = {
   ...layout
 };
 const motion = /* @__PURE__ */ createMotionProxy(featureBundle, createDomVisualElement);
-const ROOMS_META = [
-  {
-    id: "0",
-    name: "Phòng khách",
-    emoji: "🛋️",
-    gradient: "room-living",
-    tabColor: "bg-orange-200 text-orange-800 border-orange-300",
-    activeTabColor: "bg-orange-400 text-white border-orange-500 shadow-lg"
-  },
-  {
-    id: "1",
-    name: "Phòng ngủ",
-    emoji: "🛏️",
-    gradient: "room-bedroom",
-    tabColor: "bg-purple-200 text-purple-800 border-purple-300",
-    activeTabColor: "bg-purple-500 text-white border-purple-600 shadow-lg"
-  },
-  {
-    id: "2",
-    name: "Bếp",
-    emoji: "🍳",
-    gradient: "room-kitchen",
-    tabColor: "bg-green-200 text-green-800 border-green-300",
-    activeTabColor: "bg-green-500 text-white border-green-600 shadow-lg"
-  },
-  {
-    id: "3",
-    name: "Phòng tắm",
-    emoji: "🚿",
-    gradient: "room-bathroom",
-    tabColor: "bg-teal-200 text-teal-800 border-teal-300",
-    activeTabColor: "bg-teal-500 text-white border-teal-600 shadow-lg"
-  }
-];
-ROOMS_META.map((meta) => ({ ...meta, items: [] }));
-const GRID_COLS = 8;
-const GRID_ROWS = 8;
-const CELLS = Array.from(
-  { length: GRID_ROWS },
-  (_2, y2) => Array.from({ length: GRID_COLS }, (_22, x3) => ({
-    x: x3,
-    y: y2,
-    id: `cell-${x3}-${y2}`
-  }))
-).flat();
-const EMOJI_MAP = {
-  // Furniture
-  sofa: "🛋️",
-  "ghế sofa": "🛋️",
-  ghế_sofa: "🛋️",
-  ghe: "🪑",
-  ghế: "🪑",
-  chair: "🪑",
-  ban: "🪵",
-  bàn: "🪵",
-  table: "🪵",
-  giuong: "🛏️",
-  giường: "🛏️",
-  bed: "🛏️",
-  tu: "🗄️",
-  tủ: "🗄️",
-  cabinet: "🗄️",
-  wardrobe: "🗄️",
-  "tủ quần áo": "🗄️",
-  shelf: "📚",
-  ke: "📚",
-  kệ: "📚",
-  // Electronics
-  tv: "📺",
-  "ti vi": "📺",
-  tivi: "📺",
-  television: "📺",
-  phone: "📱",
-  dienthoai: "📱",
-  "điện thoại": "📱",
-  laptop: "💻",
-  maytinh: "💻",
-  "máy tính": "💻",
-  computer: "💻",
-  loa: "🔊",
-  speaker: "🔊",
-  "loa bluetooth": "🔊",
-  // Lighting
-  den: "💡",
-  đèn: "💡",
-  lamp: "💡",
-  light: "💡",
-  "đèn ngủ": "🕯️",
-  candle: "🕯️",
-  // Kitchen
-  "tủ lạnh": "🧊",
-  fridg: "🧊",
-  fridge: "🧊",
-  lovisung: "🍳",
-  "lò vi sóng": "📡",
-  microwave: "📡",
-  "máy pha cà phê": "☕",
-  coffee: "☕",
-  kettle: "🫖",
-  "ấm đun": "🫖",
-  "nồi cơm điện": "🍚",
-  rice: "🍚",
-  // Bathroom
-  "bồn tắm": "🛁",
-  bath: "🛁",
-  toilet: "🚽",
-  "bồn cầu": "🚽",
-  mirror: "🪞",
-  guong: "🪞",
-  gương: "🪞",
-  // Decoration
-  plant: "🌿",
-  cay: "🌿",
-  cây: "🌿",
-  "cây xanh": "🪴",
-  hoa: "🌸",
-  flower: "🌸",
-  tranh: "🖼️",
-  tranh_vi: "🖼️",
-  painting: "🖼️",
-  picture: "🖼️",
-  carpet: "🧶",
-  tham: "🧶",
-  thảm: "🧶",
-  // Storage
-  box: "📦",
-  hop: "📦",
-  hộp: "📦",
-  sach: "📚",
-  sách: "📚",
-  book: "📚",
-  // Misc
-  clock: "🕐",
-  "đồng hồ": "🕐",
-  donghobang: "🕐",
-  bag: "👜",
-  tui: "👜",
-  túi: "👜",
-  // Extra common items
-  xe: "🚗",
-  car: "🚗",
-  bicycle: "🚲",
-  xe_dap: "🚲",
-  bong: "⚽",
-  bóng: "⚽",
-  ball: "⚽",
-  toy: "🧸",
-  do_choi: "🧸",
-  đồ_chơi: "🧸",
-  piano: "🎹",
-  guitar: "🎸",
-  nhac_cu: "🎵",
-  quạt: "🌀",
-  quat: "🌀",
-  fan: "🌀",
-  may_giat: "🫧",
-  "máy giặt": "🫧",
-  washer: "🫧",
-  may_hut_bui: "🧹",
-  "máy hút bụi": "🧹",
-  vacuum: "🧹",
-  tool: "🔧",
-  key: "🔑",
-  khoa: "🔑",
-  khóa: "🔑"
-};
-function lookupEmoji(name) {
-  const lower = name.toLowerCase().trim();
-  if (EMOJI_MAP[lower]) return EMOJI_MAP[lower];
-  for (const [key, emoji] of Object.entries(EMOJI_MAP)) {
-    if (lower.includes(key) || key.includes(lower)) {
-      return emoji;
-    }
-  }
-  const fallbacks = ["📦", "🪑", "🪞", "🌿", "💡", "🖼️", "🧸", "⭐", "🏮", "🎀"];
-  return fallbacks[Math.abs(lower.charCodeAt(0) % fallbacks.length)];
-}
-function AddItemForm({ roomId, onAdd }) {
-  const [name, setName] = reactExports.useState("");
-  const [previewEmoji, setPreviewEmoji] = reactExports.useState("");
-  function handleChange(val) {
-    setName(val);
-    if (val.trim().length >= 2) {
-      setPreviewEmoji(lookupEmoji(val));
-    } else {
-      setPreviewEmoji("");
-    }
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    const trimmed = name.trim();
-    if (!trimmed) return;
-    const emoji = lookupEmoji(trimmed);
-    onAdd(trimmed, emoji, roomId);
-    setName("");
-    setPreviewEmoji("");
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "flex flex-col gap-2", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: previewEmoji && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        motion.div,
-        {
-          initial: { scale: 0, opacity: 0 },
-          animate: { scale: 1, opacity: 1 },
-          exit: { scale: 0, opacity: 0 },
-          transition: { type: "spring", stiffness: 400, damping: 20 },
-          className: "absolute left-3 top-1/2 -translate-y-1/2 text-xl pointer-events-none",
-          children: previewEmoji
-        },
-        previewEmoji
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "input",
-        {
-          type: "text",
-          value: name,
-          onChange: (e) => handleChange(e.target.value),
-          placeholder: "Nhập tên đồ vật...",
-          className: "w-full rounded-xl border-2 border-border bg-background text-foreground placeholder:text-foreground/40 text-sm font-body py-2.5 px-3 outline-none focus:border-primary transition-colors",
-          style: { paddingLeft: previewEmoji ? "2.75rem" : "0.75rem" },
-          "data-ocid": "inventory.input",
-          autoComplete: "off"
-        }
-      )
-    ] }),
-    name.trim().length >= 1 && name.trim().length < 2 && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/40 text-center", children: "Tiếp tục nhập để tìm biểu tượng..." }),
-    previewEmoji && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.div,
-      {
-        initial: { opacity: 0, y: -4 },
-        animate: { opacity: 1, y: 0 },
-        className: "flex items-center justify-center gap-2 bg-primary/5 border border-primary/20 rounded-xl py-2",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-3xl", children: previewEmoji }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-bold text-foreground/70", children: "Biểu tượng tìm thấy!" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[11px] text-foreground/50", children: name.trim() })
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "button",
-      {
-        type: "submit",
-        disabled: !name.trim(),
-        className: "flex items-center justify-center gap-2 w-full rounded-xl py-2.5 bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed",
-        "data-ocid": "inventory.add_button",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4" }),
-          "Thêm vào phòng"
-        ]
-      }
-    )
-  ] });
-}
-function ItemSidebar({ items, room, onRemove, onDragStart }) {
-  const roomItems = items.filter((i) => i.roomId === room.id);
-  const unplacedItems = roomItems.filter((i) => i.gridX === null);
-  const placedItems = roomItems.filter((i) => i.gridX !== null);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3 h-full", children: [
-    unplacedItems.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-bold text-foreground/60 uppercase tracking-widest px-1", children: [
-        "Chưa xếp (",
-        unplacedItems.length,
-        ")"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-1.5", children: unplacedItems.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        motion.div,
-        {
-          layout: true,
-          initial: { opacity: 0, x: -20 },
-          animate: { opacity: 1, x: 0 },
-          transition: { delay: idx * 0.04 },
-          draggable: true,
-          onDragStart: () => onDragStart(item),
-          className: "item-card flex items-center gap-2 px-3 py-2 select-none border-2 border-primary/30",
-          "data-ocid": `inventory.item.${idx + 1}`,
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-2xl", children: item.emoji }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex-1 text-sm font-bold text-foreground truncate min-w-0", children: item.name }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: () => onRemove(item.id),
-                className: "text-foreground/30 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50",
-                "aria-label": `Xóa ${item.name}`,
-                "data-ocid": `inventory.delete_button.${idx + 1}`,
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-3 h-3" })
-              }
-            )
-          ]
-        },
-        item.id
-      )) })
-    ] }),
-    placedItems.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-bold text-foreground/60 uppercase tracking-widest px-1", children: [
-        "Đã xếp (",
-        placedItems.length,
-        ")"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-1.5", children: placedItems.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        motion.div,
-        {
-          layout: true,
-          initial: { opacity: 0, x: -20 },
-          animate: { opacity: 1, x: 0 },
-          transition: { delay: idx * 0.04 },
-          draggable: true,
-          onDragStart: () => onDragStart(item),
-          className: "item-card flex items-center gap-2 px-3 py-2 select-none opacity-70",
-          "data-ocid": `inventory.placed.item.${idx + 1}`,
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-2xl", children: item.emoji }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex-1 text-sm font-bold text-foreground truncate min-w-0", children: item.name }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: () => onRemove(item.id),
-                className: "text-foreground/30 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50",
-                "aria-label": `Xóa ${item.name}`,
-                "data-ocid": `inventory.delete_placed.${idx + 1}`,
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-3 h-3" })
-              }
-            )
-          ]
-        },
-        item.id
-      )) })
-    ] }),
-    roomItems.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        "data-ocid": "inventory.empty_state",
-        className: "flex-1 flex flex-col items-center justify-center gap-2 py-8 text-center",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-4xl", children: "🏮" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-foreground/50 font-body", children: [
-            "Chưa có đồ vật nào.",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-            "Hãy thêm vào bên dưới!"
-          ] })
-        ]
-      }
-    )
-  ] });
-}
-function GridCell({
-  x: x3,
-  y: y2,
-  item,
-  isOver,
-  onDrop,
-  onDragOver,
-  onDragLeave,
-  onDragStartItem,
-  onRemoveItem
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: `drop-zone aspect-square rounded-lg flex items-center justify-center relative transition-all duration-150 ${isOver && !item ? "drag-over" : "bg-white/20 hover:bg-white/30 border border-white/10"} ${item ? "bg-white/60 shadow-sm" : ""}`,
-      onDragOver: (e) => {
-        e.preventDefault();
-        onDragOver(x3, y2);
-      },
-      onDragLeave,
-      onDrop: (e) => {
-        e.preventDefault();
-        onDrop(x3, y2);
-      },
-      "data-ocid": `room.cell.${y2 * GRID_COLS + x3 + 1}`,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: item && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          motion.div,
-          {
-            initial: { scale: 0, opacity: 0 },
-            animate: { scale: 1, opacity: 1 },
-            exit: { scale: 0, opacity: 0 },
-            transition: { type: "spring", stiffness: 300, damping: 20 },
-            draggable: true,
-            onDragStart: () => onDragStartItem(item),
-            className: "w-full h-full flex flex-col items-center justify-center cursor-grab active:cursor-grabbing group relative p-0.5",
-            title: item.name,
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-2xl sm:text-3xl leading-none select-none", children: item.emoji }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[9px] font-bold text-foreground/80 mt-0.5 truncate max-w-full px-0.5 leading-tight text-center", children: item.name }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  type: "button",
-                  onClick: () => onRemoveItem(item.id),
-                  className: "absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm z-10",
-                  "aria-label": `Xóa ${item.name} khỏi lưới`,
-                  "data-ocid": "room.delete_button",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-2.5 h-2.5" })
-                }
-              )
-            ]
-          },
-          item.id
-        ) }),
-        isOver && !item && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          motion.div,
-          {
-            initial: { scale: 0.5, opacity: 0 },
-            animate: { scale: 1, opacity: 1 },
-            className: "text-xl pointer-events-none",
-            children: "✨"
-          }
-        )
-      ]
-    }
-  );
-}
-function RoomGrid({
-  items,
-  room,
-  dragOverCell,
-  onDrop,
-  onDragOver,
-  onDragLeave,
-  onDragStartItem,
-  onRemoveItem
-}) {
-  const getItem = (x3, y2) => items.find((i) => i.roomId === room.id && i.gridX === x3 && i.gridY === y2);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      className: `${room.gradient} rounded-3xl p-3 shadow-xl`,
-      "data-ocid": "room.grid",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          className: "grid gap-1.5",
-          style: { gridTemplateColumns: `repeat(${GRID_COLS}, minmax(0, 1fr))` },
-          children: CELLS.map(({ x: x3, y: y2, id: id2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-            GridCell,
-            {
-              x: x3,
-              y: y2,
-              item: getItem(x3, y2),
-              isOver: !!((dragOverCell == null ? void 0 : dragOverCell.x) === x3 && (dragOverCell == null ? void 0 : dragOverCell.y) === y2),
-              onDrop,
-              onDragOver,
-              onDragLeave,
-              onDragStartItem,
-              onRemoveItem
-            },
-            id2
-          ))
-        }
-      )
-    }
-  );
-}
-function RoomTabs({ rooms, activeRoomIdx, items, onSelect }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2 overflow-x-auto pb-1 scrollbar-hide", children: rooms.map((room, idx) => {
-    const isActive = idx === activeRoomIdx;
-    const count = items.filter((i) => i.roomId === room.id).length;
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.button,
-      {
-        type: "button",
-        onClick: () => onSelect(idx),
-        whileHover: { scale: 1.05 },
-        whileTap: { scale: 0.95 },
-        className: `flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm border-2 whitespace-nowrap transition-all duration-200 flex-shrink-0 ${isActive ? room.activeTabColor : room.tabColor}`,
-        "data-ocid": `room.tab.${room.id}`,
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-lg", children: room.emoji }),
-          room.name,
-          count > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              className: `text-xs rounded-full px-1.5 py-0.5 font-extrabold leading-none ${isActive ? "bg-white/30 text-white" : "bg-black/10 text-current"}`,
-              children: count
-            }
-          )
-        ]
-      },
-      room.id
-    );
-  }) });
-}
-const RoomId = Nat;
-const ItemId = Nat;
-const Item = Record({
-  "id": ItemId,
-  "name": Text,
-  "color": Opt(Text),
-  "emoji": Text
+const Element$2 = Variant({
+  "Grass": Null,
+  "Water": Null,
+  "Electric": Null,
+  "Earth": Null
 });
-const GridPos = Record({ "col": Nat, "row": Nat });
-const PlacedItem = Record({ "pos": GridPos, "itemId": ItemId });
-const Room = Record({
-  "id": RoomId,
-  "grid": Vec(PlacedItem),
-  "name": Text,
-  "items": Vec(Item)
+const MutationVariant$1 = Variant({
+  "Gradient": Null,
+  "Solid": Null,
+  "Metallic": Null,
+  "Spotted": Null,
+  "Striped": Null
+});
+const BodyPart = Record({
+  "element": Element$2,
+  "mutation": MutationVariant$1
+});
+const NewWorm = Record({
+  "element": Element$2,
+  "body": BodyPart,
+  "head": BodyPart,
+  "tail": BodyPart
+});
+const WormId = Nat;
+const Worm = Record({
+  "id": WormId,
+  "element": Element$2,
+  "body": BodyPart,
+  "head": BodyPart,
+  "tail": BodyPart
 });
 Service({
-  "addItem": Func(
-    [RoomId, Text, Text, Opt(Text)],
-    [Opt(Item)],
+  "addWorm": Func(
+    [NewWorm],
+    [Variant({ "ok": WormId, "err": Text })],
     []
   ),
-  "createRoom": Func([Text], [Room], []),
-  "deleteRoom": Func([RoomId], [Bool], []),
-  "getRooms": Func([], [Vec(Room)], []),
-  "moveItem": Func([RoomId, GridPos, GridPos], [Bool], []),
-  "placeItem": Func([RoomId, ItemId, GridPos], [Bool], []),
-  "removeFromGrid": Func([RoomId, GridPos], [Bool], []),
-  "removeItem": Func([RoomId, ItemId], [Bool], [])
+  "deleteWorm": Func(
+    [WormId],
+    [Variant({ "ok": Null, "err": Text })],
+    []
+  ),
+  "getWorms": Func([], [Vec(Worm)], [])
 });
 const idlFactory = ({ IDL: IDL2 }) => {
-  const RoomId2 = IDL2.Nat;
-  const ItemId2 = IDL2.Nat;
-  const Item2 = IDL2.Record({
-    "id": ItemId2,
-    "name": IDL2.Text,
-    "color": IDL2.Opt(IDL2.Text),
-    "emoji": IDL2.Text
+  const Element2 = IDL2.Variant({
+    "Grass": IDL2.Null,
+    "Water": IDL2.Null,
+    "Electric": IDL2.Null,
+    "Earth": IDL2.Null
   });
-  const GridPos2 = IDL2.Record({ "col": IDL2.Nat, "row": IDL2.Nat });
-  const PlacedItem2 = IDL2.Record({ "pos": GridPos2, "itemId": ItemId2 });
-  const Room2 = IDL2.Record({
-    "id": RoomId2,
-    "grid": IDL2.Vec(PlacedItem2),
-    "name": IDL2.Text,
-    "items": IDL2.Vec(Item2)
+  const MutationVariant2 = IDL2.Variant({
+    "Gradient": IDL2.Null,
+    "Solid": IDL2.Null,
+    "Metallic": IDL2.Null,
+    "Spotted": IDL2.Null,
+    "Striped": IDL2.Null
+  });
+  const BodyPart2 = IDL2.Record({
+    "element": Element2,
+    "mutation": MutationVariant2
+  });
+  const NewWorm2 = IDL2.Record({
+    "element": Element2,
+    "body": BodyPart2,
+    "head": BodyPart2,
+    "tail": BodyPart2
+  });
+  const WormId2 = IDL2.Nat;
+  const Worm2 = IDL2.Record({
+    "id": WormId2,
+    "element": Element2,
+    "body": BodyPart2,
+    "head": BodyPart2,
+    "tail": BodyPart2
   });
   return IDL2.Service({
-    "addItem": IDL2.Func(
-      [RoomId2, IDL2.Text, IDL2.Text, IDL2.Opt(IDL2.Text)],
-      [IDL2.Opt(Item2)],
+    "addWorm": IDL2.Func(
+      [NewWorm2],
+      [IDL2.Variant({ "ok": WormId2, "err": IDL2.Text })],
       []
     ),
-    "createRoom": IDL2.Func([IDL2.Text], [Room2], []),
-    "deleteRoom": IDL2.Func([RoomId2], [IDL2.Bool], []),
-    "getRooms": IDL2.Func([], [IDL2.Vec(Room2)], []),
-    "moveItem": IDL2.Func([RoomId2, GridPos2, GridPos2], [IDL2.Bool], []),
-    "placeItem": IDL2.Func([RoomId2, ItemId2, GridPos2], [IDL2.Bool], []),
-    "removeFromGrid": IDL2.Func([RoomId2, GridPos2], [IDL2.Bool], []),
-    "removeItem": IDL2.Func([RoomId2, ItemId2], [IDL2.Bool], [])
+    "deleteWorm": IDL2.Func(
+      [WormId2],
+      [IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text })],
+      []
+    ),
+    "getWorms": IDL2.Func([], [IDL2.Vec(Worm2)], [])
   });
 };
-function candid_some(value) {
-  return [
-    value
-  ];
-}
-function candid_none() {
-  return [];
-}
-function record_opt_to_undefined(arg) {
-  return arg == null ? void 0 : arg;
-}
+var Element$1 = /* @__PURE__ */ ((Element2) => {
+  Element2["Grass"] = "Grass";
+  Element2["Water"] = "Water";
+  Element2["Electric"] = "Electric";
+  Element2["Earth"] = "Earth";
+  return Element2;
+})(Element$1 || {});
+var MutationVariant = /* @__PURE__ */ ((MutationVariant2) => {
+  MutationVariant2["Gradient"] = "Gradient";
+  MutationVariant2["Solid"] = "Solid";
+  MutationVariant2["Metallic"] = "Metallic";
+  MutationVariant2["Spotted"] = "Spotted";
+  MutationVariant2["Striped"] = "Striped";
+  return MutationVariant2;
+})(MutationVariant || {});
 class Backend {
   constructor(actor, _uploadFile, _downloadFile, processError2) {
     this.actor = actor;
@@ -36556,155 +35931,152 @@ class Backend {
     this._downloadFile = _downloadFile;
     this.processError = processError2;
   }
-  async addItem(arg0, arg1, arg2, arg3) {
+  async addWorm(arg0) {
     if (this.processError) {
       try {
-        const result = await this.actor.addItem(arg0, arg1, arg2, to_candid_opt_n1(this._uploadFile, this._downloadFile, arg3));
-        return from_candid_opt_n2(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.addWorm(to_candid_NewWorm_n1(this._uploadFile, this._downloadFile, arg0));
+        return from_candid_variant_n9(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.addItem(arg0, arg1, arg2, to_candid_opt_n1(this._uploadFile, this._downloadFile, arg3));
-      return from_candid_opt_n2(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.addWorm(to_candid_NewWorm_n1(this._uploadFile, this._downloadFile, arg0));
+      return from_candid_variant_n9(this._uploadFile, this._downloadFile, result);
     }
   }
-  async createRoom(arg0) {
+  async deleteWorm(arg0) {
     if (this.processError) {
       try {
-        const result = await this.actor.createRoom(arg0);
-        return from_candid_Room_n6(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.deleteWorm(arg0);
+        return from_candid_variant_n10(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.createRoom(arg0);
-      return from_candid_Room_n6(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.deleteWorm(arg0);
+      return from_candid_variant_n10(this._uploadFile, this._downloadFile, result);
     }
   }
-  async deleteRoom(arg0) {
+  async getWorms() {
     if (this.processError) {
       try {
-        const result = await this.actor.deleteRoom(arg0);
-        return result;
+        const result = await this.actor.getWorms();
+        return from_candid_vec_n11(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.deleteRoom(arg0);
-      return result;
-    }
-  }
-  async getRooms() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getRooms();
-        return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getRooms();
-      return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async moveItem(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.moveItem(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.moveItem(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async placeItem(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.placeItem(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.placeItem(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async removeFromGrid(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.removeFromGrid(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.removeFromGrid(arg0, arg1);
-      return result;
-    }
-  }
-  async removeItem(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.removeItem(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.removeItem(arg0, arg1);
-      return result;
+      const result = await this.actor.getWorms();
+      return from_candid_vec_n11(this._uploadFile, this._downloadFile, result);
     }
   }
 }
-function from_candid_Item_n3(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n4(_uploadFile, _downloadFile, value);
+function from_candid_BodyPart_n16(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n17(_uploadFile, _downloadFile, value);
 }
-function from_candid_Room_n6(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n7(_uploadFile, _downloadFile, value);
+function from_candid_Element_n14(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n15(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n2(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : from_candid_Item_n3(_uploadFile, _downloadFile, value[0]);
+function from_candid_MutationVariant_n18(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n19(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n5(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
+function from_candid_Worm_n12(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n13(_uploadFile, _downloadFile, value);
 }
-function from_candid_record_n4(_uploadFile, _downloadFile, value) {
+function from_candid_record_n13(_uploadFile, _downloadFile, value) {
   return {
     id: value.id,
-    name: value.name,
-    color: record_opt_to_undefined(from_candid_opt_n5(_uploadFile, _downloadFile, value.color)),
-    emoji: value.emoji
+    element: from_candid_Element_n14(_uploadFile, _downloadFile, value.element),
+    body: from_candid_BodyPart_n16(_uploadFile, _downloadFile, value.body),
+    head: from_candid_BodyPart_n16(_uploadFile, _downloadFile, value.head),
+    tail: from_candid_BodyPart_n16(_uploadFile, _downloadFile, value.tail)
   };
 }
-function from_candid_record_n7(_uploadFile, _downloadFile, value) {
+function from_candid_record_n17(_uploadFile, _downloadFile, value) {
   return {
-    id: value.id,
-    grid: value.grid,
-    name: value.name,
-    items: from_candid_vec_n8(_uploadFile, _downloadFile, value.items)
+    element: from_candid_Element_n14(_uploadFile, _downloadFile, value.element),
+    mutation: from_candid_MutationVariant_n18(_uploadFile, _downloadFile, value.mutation)
   };
 }
-function from_candid_vec_n8(_uploadFile, _downloadFile, value) {
-  return value.map((x3) => from_candid_Item_n3(_uploadFile, _downloadFile, x3));
+function from_candid_variant_n10(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
 }
-function from_candid_vec_n9(_uploadFile, _downloadFile, value) {
-  return value.map((x3) => from_candid_Room_n6(_uploadFile, _downloadFile, x3));
+function from_candid_variant_n15(_uploadFile, _downloadFile, value) {
+  return "Grass" in value ? "Grass" : "Water" in value ? "Water" : "Electric" in value ? "Electric" : "Earth" in value ? "Earth" : value;
 }
-function to_candid_opt_n1(_uploadFile, _downloadFile, value) {
-  return value === null ? candid_none() : candid_some(value);
+function from_candid_variant_n19(_uploadFile, _downloadFile, value) {
+  return "Gradient" in value ? "Gradient" : "Solid" in value ? "Solid" : "Metallic" in value ? "Metallic" : "Spotted" in value ? "Spotted" : "Striped" in value ? "Striped" : value;
+}
+function from_candid_variant_n9(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_vec_n11(_uploadFile, _downloadFile, value) {
+  return value.map((x3) => from_candid_Worm_n12(_uploadFile, _downloadFile, x3));
+}
+function to_candid_BodyPart_n5(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n6(_uploadFile, _downloadFile, value);
+}
+function to_candid_Element_n3(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n4(_uploadFile, _downloadFile, value);
+}
+function to_candid_MutationVariant_n7(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n8(_uploadFile, _downloadFile, value);
+}
+function to_candid_NewWorm_n1(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_record_n2(_uploadFile, _downloadFile, value) {
+  return {
+    element: to_candid_Element_n3(_uploadFile, _downloadFile, value.element),
+    body: to_candid_BodyPart_n5(_uploadFile, _downloadFile, value.body),
+    head: to_candid_BodyPart_n5(_uploadFile, _downloadFile, value.head),
+    tail: to_candid_BodyPart_n5(_uploadFile, _downloadFile, value.tail)
+  };
+}
+function to_candid_record_n6(_uploadFile, _downloadFile, value) {
+  return {
+    element: to_candid_Element_n3(_uploadFile, _downloadFile, value.element),
+    mutation: to_candid_MutationVariant_n7(_uploadFile, _downloadFile, value.mutation)
+  };
+}
+function to_candid_variant_n4(_uploadFile, _downloadFile, value) {
+  return value == "Grass" ? {
+    Grass: null
+  } : value == "Water" ? {
+    Water: null
+  } : value == "Electric" ? {
+    Electric: null
+  } : value == "Earth" ? {
+    Earth: null
+  } : value;
+}
+function to_candid_variant_n8(_uploadFile, _downloadFile, value) {
+  return value == "Gradient" ? {
+    Gradient: null
+  } : value == "Solid" ? {
+    Solid: null
+  } : value == "Metallic" ? {
+    Metallic: null
+  } : value == "Spotted" ? {
+    Spotted: null
+  } : value == "Striped" ? {
+    Striped: null
+  } : value;
 }
 function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
   const agent = options.agent || HttpAgent.createSync({
@@ -36720,456 +36092,727 @@ function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
   });
   return new Backend(actor, _uploadFile, _downloadFile, options.processError);
 }
-function useGetRooms() {
+const ELEMENT_META = {
+  [Element$1.Electric]: {
+    name: "Sâu Sét",
+    emoji: "⚡",
+    bgClass: "bg-[oklch(var(--worm-electric)/0.2)]",
+    borderClass: "border-[oklch(var(--worm-electric))]",
+    textClass: "text-[oklch(var(--worm-electric-dark))]",
+    glowColor: "oklch(var(--worm-electric))"
+  },
+  [Element$1.Earth]: {
+    name: "Sâu Đất",
+    emoji: "🌿",
+    bgClass: "bg-[oklch(var(--worm-earth)/0.2)]",
+    borderClass: "border-[oklch(var(--worm-earth))]",
+    textClass: "text-[oklch(var(--worm-earth))]",
+    glowColor: "oklch(var(--worm-earth))"
+  },
+  [Element$1.Grass]: {
+    name: "Sâu Cỏ",
+    emoji: "🍃",
+    bgClass: "bg-[oklch(var(--worm-grass)/0.2)]",
+    borderClass: "border-[oklch(var(--worm-grass))]",
+    textClass: "text-[oklch(var(--worm-grass))]",
+    glowColor: "oklch(var(--worm-grass))"
+  },
+  [Element$1.Water]: {
+    name: "Sâu Nước",
+    emoji: "💧",
+    bgClass: "bg-[oklch(var(--worm-water)/0.2)]",
+    borderClass: "border-[oklch(var(--worm-water))]",
+    textClass: "text-[oklch(var(--worm-water))]",
+    glowColor: "oklch(var(--worm-water))"
+  }
+};
+const MUTATION_META = {
+  [MutationVariant.Solid]: { name: "Đặc", emoji: "⬛", patternClass: "" },
+  [MutationVariant.Striped]: {
+    name: "Sọc",
+    emoji: "🟧",
+    patternClass: "striped"
+  },
+  [MutationVariant.Spotted]: {
+    name: "Chấm",
+    emoji: "🟡",
+    patternClass: "spotted"
+  },
+  [MutationVariant.Gradient]: {
+    name: "Dải Màu",
+    emoji: "🌈",
+    patternClass: "gradient"
+  },
+  [MutationVariant.Metallic]: {
+    name: "Kim Loại",
+    emoji: "✨",
+    patternClass: "metallic"
+  }
+};
+const PART_LABELS = {
+  head: "Đầu",
+  body: "Thân",
+  tail: "Đuôi"
+};
+const ALL_ELEMENTS = [
+  Element$1.Electric,
+  Element$1.Earth,
+  Element$1.Grass,
+  Element$1.Water
+];
+const ALL_MUTATIONS = [
+  MutationVariant.Solid,
+  MutationVariant.Striped,
+  MutationVariant.Spotted,
+  MutationVariant.Gradient,
+  MutationVariant.Metallic
+];
+function randElement() {
+  return ALL_ELEMENTS[Math.floor(Math.random() * ALL_ELEMENTS.length)];
+}
+function randMutation() {
+  return ALL_MUTATIONS[Math.floor(Math.random() * ALL_MUTATIONS.length)];
+}
+function breedWorms(p1Element, p1Head, p1Body, p1Tail, p2Element, p2Head, p2Body, p2Tail) {
+  const pick = (a2, b2) => Math.random() < 0.5 ? a2 : b2;
+  const mutate = (a2, b2, rand) => Math.random() < 0.15 ? rand() : pick(a2, b2);
+  return {
+    element: mutate(p1Element, p2Element, randElement),
+    head: {
+      element: mutate(p1Head.element, p2Head.element, randElement),
+      mutation: mutate(p1Head.mutation, p2Head.mutation, randMutation)
+    },
+    body: {
+      element: mutate(p1Body.element, p2Body.element, randElement),
+      mutation: mutate(p1Body.mutation, p2Body.mutation, randMutation)
+    },
+    tail: {
+      element: mutate(p1Tail.element, p2Tail.element, randElement),
+      mutation: mutate(p1Tail.mutation, p2Tail.mutation, randMutation)
+    }
+  };
+}
+const MAX_WORMS = 20;
+function useGetWorms() {
   const { actor, isFetching } = useActor(createActor);
   return useQuery({
-    queryKey: ["rooms"],
+    queryKey: ["worms"],
     queryFn: async () => {
       if (!actor) return [];
-      return actor.getRooms();
+      return actor.getWorms();
     },
     enabled: !!actor && !isFetching,
-    staleTime: 3e4
+    staleTime: 1e4
   });
 }
-function useAddItem() {
+function useAddWorm() {
   const { actor } = useActor(createActor);
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async ({
-      roomId,
-      name,
-      emoji
-    }) => {
+    mutationFn: async (newWorm) => {
       if (!actor) throw new Error("Actor not ready");
-      return actor.addItem(roomId, name, emoji, null);
+      const res = await actor.addWorm(newWorm);
+      if (res.__kind__ === "err") throw new Error(res.err);
+      return res.ok;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["rooms"] })
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["worms"] })
   });
 }
-function useRemoveItem() {
+function useDeleteWorm() {
   const { actor } = useActor(createActor);
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async ({
-      roomId,
-      itemId
-    }) => {
+    mutationFn: async (id2) => {
       if (!actor) throw new Error("Actor not ready");
-      return actor.removeItem(roomId, itemId);
+      const res = await actor.deleteWorm(id2);
+      if (res.__kind__ === "err") throw new Error(res.err);
+      return res.ok;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["rooms"] })
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["worms"] })
   });
 }
-function usePlaceItem() {
-  const { actor } = useActor(createActor);
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async ({
-      roomId,
-      itemId,
-      pos
-    }) => {
-      if (!actor) throw new Error("Actor not ready");
-      return actor.placeItem(roomId, itemId, pos);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["rooms"] })
-  });
-}
-function useMoveItem() {
-  const { actor } = useActor(createActor);
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async ({
-      roomId,
-      fromPos,
-      toPos
-    }) => {
-      if (!actor) throw new Error("Actor not ready");
-      return actor.moveItem(roomId, fromPos, toPos);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["rooms"] })
-  });
-}
-function useRemoveFromGrid() {
-  const { actor } = useActor(createActor);
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async ({ roomId, pos }) => {
-      if (!actor) throw new Error("Actor not ready");
-      return actor.removeFromGrid(roomId, pos);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["rooms"] })
-  });
-}
-function getRoomMetaByIndex(index2) {
-  return ROOMS_META[index2 % ROOMS_META.length];
-}
-function useHomeInventory() {
-  const { data: backendRooms, isLoading } = useGetRooms();
-  const addItemMut = useAddItem();
-  const removeItemMut = useRemoveItem();
-  const placeItemMut = usePlaceItem();
-  const moveItemMut = useMoveItem();
-  const removeFromGridMut = useRemoveFromGrid();
-  const [localItems, setLocalItems] = reactExports.useState([]);
-  const undoStackRef = reactExports.useRef([]);
-  const [undoStackLen, setUndoStackLen] = reactExports.useState(0);
-  reactExports.useEffect(() => {
-    if (!backendRooms) return;
-    const items = [];
-    for (const room of backendRooms) {
-      for (const item of room.items) {
-        const placed = room.grid.find((p2) => p2.itemId === item.id);
-        items.push({
-          id: String(item.id),
-          name: item.name,
-          emoji: item.emoji,
-          roomId: String(room.id),
-          gridX: placed ? Number(placed.pos.col) : null,
-          gridY: placed ? Number(placed.pos.row) : null
-        });
-      }
-    }
-    setLocalItems(items);
-    undoStackRef.current = [];
-    setUndoStackLen(0);
-  }, [backendRooms]);
-  const rooms = reactExports.useMemo(() => {
-    if (!backendRooms) {
-      return ROOMS_META.map((meta) => ({ ...meta, items: [] }));
-    }
-    return backendRooms.map((br, index2) => {
-      const meta = getRoomMetaByIndex(index2);
-      const roomItems = localItems.filter((i) => i.roomId === String(br.id));
-      return { ...meta, id: String(br.id), name: br.name, items: roomItems };
+function useWormGame() {
+  const { data: worms = [], isLoading } = useGetWorms();
+  const addWormMut = useAddWorm();
+  const deleteWormMut = useDeleteWorm();
+  const [selectedIds, setSelectedIds] = reactExports.useState([]);
+  const [isBreeding, setIsBreeding] = reactExports.useState(false);
+  const toggleSelect = reactExports.useCallback((id2) => {
+    setSelectedIds((prev) => {
+      if (prev.some((x3) => x3 === id2)) return prev.filter((x3) => x3 !== id2);
+      if (prev.length >= 2) return [prev[1], id2];
+      return [...prev, id2];
     });
-  }, [backendRooms, localItems]);
-  const pushUndo = reactExports.useCallback((snapshot) => {
-    undoStackRef.current = [...undoStackRef.current.slice(-19), snapshot];
-    setUndoStackLen(undoStackRef.current.length);
   }, []);
-  const addItem = reactExports.useCallback(
-    async (name, emoji, roomId) => {
-      const bRoom = backendRooms == null ? void 0 : backendRooms.find((r2) => String(r2.id) === roomId);
-      if (!bRoom) return;
-      try {
-        await addItemMut.mutateAsync({ roomId: bRoom.id, name, emoji });
-        ue.success(`✨ Đã thêm ${emoji} ${name}`);
-      } catch {
-        ue.error("Không thêm được đồ vật");
+  const clearSelection = reactExports.useCallback(() => setSelectedIds([]), []);
+  const breed = reactExports.useCallback(
+    async (parent1, parent2) => {
+      if (worms.length >= 20) {
+        ue.error("Tổ đã đầy! Hãy xóa bớt sâu để nhân giống.");
+        return;
       }
-    },
-    [backendRooms, addItemMut]
-  );
-  const removeItem2 = reactExports.useCallback(
-    async (itemId) => {
-      const item = localItems.find((i) => i.id === itemId);
-      if (!item) return;
-      const bRoom = backendRooms == null ? void 0 : backendRooms.find((r2) => String(r2.id) === item.roomId);
-      if (!bRoom) return;
-      const bItem = bRoom.items.find((i) => String(i.id) === itemId);
-      if (!bItem) return;
-      pushUndo([...localItems]);
-      setLocalItems((prev) => prev.filter((i) => i.id !== itemId));
+      setIsBreeding(true);
       try {
-        await removeItemMut.mutateAsync({ roomId: bRoom.id, itemId: bItem.id });
-      } catch {
-        setLocalItems((prev) => [...prev, item]);
-        ue.error("Không xóa được đồ vật");
-      }
-    },
-    [localItems, backendRooms, removeItemMut, pushUndo]
-  );
-  const placeItem = reactExports.useCallback(
-    async (itemId, roomId, gridX, gridY) => {
-      const item = localItems.find((i) => i.id === itemId);
-      if (!item) return;
-      const bRoom = backendRooms == null ? void 0 : backendRooms.find((r2) => String(r2.id) === roomId);
-      if (!bRoom) return;
-      const bItem = bRoom.items.find((i) => String(i.id) === itemId);
-      if (!bItem) return;
-      const targetOccupied = localItems.find(
-        (i) => i.roomId === roomId && i.gridX === gridX && i.gridY === gridY && i.id !== itemId
-      );
-      if (targetOccupied) return;
-      pushUndo([...localItems]);
-      const isPlaced = item.gridX !== null && item.gridY !== null;
-      setLocalItems(
-        (prev) => prev.map((i) => i.id === itemId ? { ...i, roomId, gridX, gridY } : i)
-      );
-      try {
-        if (isPlaced) {
-          await moveItemMut.mutateAsync({
-            roomId: bRoom.id,
-            fromPos: { row: BigInt(item.gridY), col: BigInt(item.gridX) },
-            toPos: { row: BigInt(gridY), col: BigInt(gridX) }
-          });
-        } else {
-          await placeItemMut.mutateAsync({
-            roomId: bRoom.id,
-            itemId: bItem.id,
-            pos: { row: BigInt(gridY), col: BigInt(gridX) }
-          });
-        }
-      } catch {
-        setLocalItems((prev) => prev.map((i) => i.id === itemId ? item : i));
-        ue.error("Không di chuyển được đồ vật");
-      }
-    },
-    [localItems, backendRooms, placeItemMut, moveItemMut, pushUndo]
-  );
-  const removeFromGrid = reactExports.useCallback(
-    async (itemId) => {
-      const item = localItems.find((i) => i.id === itemId);
-      if (!item || item.gridX === null || item.gridY === null) return;
-      const bRoom = backendRooms == null ? void 0 : backendRooms.find((r2) => String(r2.id) === item.roomId);
-      if (!bRoom) return;
-      pushUndo([...localItems]);
-      setLocalItems(
-        (prev) => prev.map(
-          (i) => i.id === itemId ? { ...i, gridX: null, gridY: null } : i
-        )
-      );
-      try {
-        await removeFromGridMut.mutateAsync({
-          roomId: bRoom.id,
-          pos: { row: BigInt(item.gridY), col: BigInt(item.gridX) }
-        });
-      } catch {
-        setLocalItems((prev) => prev.map((i) => i.id === itemId ? item : i));
-        ue.error("Không xóa khỏi lưới được");
-      }
-    },
-    [localItems, backendRooms, removeFromGridMut, pushUndo]
-  );
-  const undo = reactExports.useCallback(() => {
-    const stack = undoStackRef.current;
-    if (stack.length === 0) return;
-    const prev = stack[stack.length - 1];
-    undoStackRef.current = stack.slice(0, -1);
-    setUndoStackLen(undoStackRef.current.length);
-    setLocalItems(prev);
-    ue.info("↩️ Đã hoàn tác");
-  }, []);
-  const resetRoom = reactExports.useCallback(
-    async (roomId) => {
-      const roomGridItems = localItems.filter(
-        (i) => i.roomId === roomId && i.gridX !== null
-      );
-      if (roomGridItems.length === 0) return;
-      pushUndo([...localItems]);
-      setLocalItems(
-        (prev) => prev.map(
-          (i) => i.roomId === roomId ? { ...i, gridX: null, gridY: null } : i
-        )
-      );
-      const bRoom = backendRooms == null ? void 0 : backendRooms.find((r2) => String(r2.id) === roomId);
-      if (!bRoom) return;
-      try {
-        await Promise.all(
-          roomGridItems.map(
-            (i) => removeFromGridMut.mutateAsync({
-              roomId: bRoom.id,
-              pos: { row: BigInt(i.gridY), col: BigInt(i.gridX) }
-            })
-          )
+        const child = breedWorms(
+          parent1.element,
+          parent1.head,
+          parent1.body,
+          parent1.tail,
+          parent2.element,
+          parent2.head,
+          parent2.body,
+          parent2.tail
         );
-        ue.success("🧹 Đã dọn sạch phòng");
+        await addWormMut.mutateAsync(child);
+        ue.success("🥚 Trứng nở thành công! Sâu mới đã xuất hiện!");
+        setSelectedIds([]);
       } catch {
-        ue.error("Có lỗi khi dọn phòng");
+        ue.error("Nhân giống thất bại, thử lại nhé!");
+      } finally {
+        setIsBreeding(false);
       }
     },
-    [localItems, backendRooms, removeFromGridMut, pushUndo]
+    [worms.length, addWormMut]
   );
-  const canUndo = undoStackLen > 0;
+  const breedSelf = reactExports.useCallback(async () => {
+    if (worms.length >= 20) {
+      ue.error("Tổ đã đầy! Hãy xóa bớt sâu để nhân giống.");
+      return;
+    }
+    const solo = worms[0];
+    if (!solo) return;
+    setIsBreeding(true);
+    try {
+      const child = breedWorms(
+        solo.element,
+        solo.head,
+        solo.body,
+        solo.tail,
+        solo.element,
+        solo.head,
+        solo.body,
+        solo.tail
+      );
+      await addWormMut.mutateAsync(child);
+      ue.success("🥚 Sâu tự lai thành công! Trứng mới đã nở!");
+    } catch {
+      ue.error("Nhân giống thất bại, thử lại nhé!");
+    } finally {
+      setIsBreeding(false);
+    }
+  }, [worms, addWormMut]);
+  const deleteWorm = reactExports.useCallback(
+    async (id2) => {
+      try {
+        await deleteWormMut.mutateAsync(id2);
+        setSelectedIds((prev) => prev.filter((x3) => x3 !== id2));
+        ue.success("🗑️ Đã thả sâu về tự nhiên!");
+      } catch {
+        ue.error("Không xóa được sâu này!");
+      }
+    },
+    [deleteWormMut]
+  );
   return {
-    rooms,
-    items: localItems,
+    worms,
     isLoading,
-    addItem,
-    removeItem: removeItem2,
-    placeItem,
-    removeFromGrid,
-    undo,
-    canUndo,
-    resetRoom
+    selectedIds,
+    toggleSelect,
+    clearSelection,
+    breed,
+    breedSelf,
+    deleteWorm,
+    isBreeding
   };
 }
 const queryClient = new QueryClient();
+const ELEMENT_COLORS = {
+  [Element$1.Electric]: ["#ffe234", "#4a90e2"],
+  [Element$1.Earth]: ["#a0522d", "#7cbc40"],
+  [Element$1.Grass]: ["#4caf50", "#a5d6a7"],
+  [Element$1.Water]: ["#29b6f6", "#b3e5fc"]
+};
+function WormPart({ element, mutation, partName, size = 36 }) {
+  const [c1, c2] = ELEMENT_COLORS[element];
+  const isHead = partName === "head";
+  const isTail = partName === "tail";
+  const getFill = () => {
+    if (mutation === "Gradient") return `url(#grad-${element}-${partName})`;
+    if (mutation === "Striped") return `url(#stripe-${element}-${partName})`;
+    if (mutation === "Spotted") return c1;
+    if (mutation === "Metallic") return `url(#metal-${element}-${partName})`;
+    return c1;
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: size,
+      height: size,
+      viewBox: "0 0 40 40",
+      xmlns: "http://www.w3.org/2000/svg",
+      role: "img",
+      "aria-label": partName,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("defs", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("radialGradient", { id: `grad-${element}-${partName}`, cx: "40%", cy: "40%", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0%", stopColor: c2 }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "100%", stopColor: c1 })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "pattern",
+            {
+              id: `stripe-${element}-${partName}`,
+              patternUnits: "userSpaceOnUse",
+              width: "6",
+              height: "6",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { width: "6", height: "6", fill: c2 }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M0 6L6 0M-1 1L1-1M5 7L7 5", stroke: c1, strokeWidth: "2" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "linearGradient",
+            {
+              id: `metal-${element}-${partName}`,
+              x1: "0",
+              y1: "0",
+              x2: "1",
+              y2: "1",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0%", stopColor: "#fff", stopOpacity: "0.7" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "40%", stopColor: c1 }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "100%", stopColor: c2 })
+              ]
+            }
+          )
+        ] }),
+        isHead ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "ellipse",
+            {
+              cx: "20",
+              cy: "22",
+              rx: "15",
+              ry: "14",
+              fill: getFill(),
+              stroke: "rgba(0,0,0,0.15)",
+              strokeWidth: "1.5"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "14", cy: "18", r: "3.5", fill: "white" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "26", cy: "18", r: "3.5", fill: "white" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "15", cy: "18", r: "2", fill: "#222" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "27", cy: "18", r: "2", fill: "#222" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "15.5", cy: "17", r: "0.8", fill: "white" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "27.5", cy: "17", r: "0.8", fill: "white" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "path",
+            {
+              d: "M14 25 Q20 30 26 25",
+              stroke: "#222",
+              strokeWidth: "1.5",
+              fill: "none",
+              strokeLinecap: "round"
+            }
+          ),
+          mutation === "Spotted" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "10", cy: "25", r: "2", fill: c2, opacity: "0.7" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "30", cy: "23", r: "2", fill: c2, opacity: "0.7" })
+          ] })
+        ] }) : isTail ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "ellipse",
+            {
+              cx: "20",
+              cy: "22",
+              rx: "10",
+              ry: "13",
+              fill: getFill(),
+              stroke: "rgba(0,0,0,0.15)",
+              strokeWidth: "1.5"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "ellipse",
+            {
+              cx: "20",
+              cy: "33",
+              rx: "5",
+              ry: "6",
+              fill: getFill(),
+              stroke: "rgba(0,0,0,0.12)",
+              strokeWidth: "1"
+            }
+          ),
+          mutation === "Spotted" && /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "20", cy: "20", r: "2.5", fill: c2, opacity: "0.7" })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "rect",
+            {
+              x: "6",
+              y: "8",
+              width: "28",
+              height: "24",
+              rx: "10",
+              fill: getFill(),
+              stroke: "rgba(0,0,0,0.15)",
+              strokeWidth: "1.5"
+            }
+          ),
+          mutation === "Spotted" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "13", cy: "18", r: "3", fill: c2, opacity: "0.6" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "27", cy: "22", r: "2.5", fill: c2, opacity: "0.6" })
+          ] }),
+          mutation === "Striped" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "line",
+            {
+              x1: "6",
+              y1: "18",
+              x2: "34",
+              y2: "18",
+              stroke: c2,
+              strokeWidth: "3",
+              opacity: "0.5"
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+function WormCard({
+  worm,
+  index: index2,
+  isSelected,
+  onSelect,
+  onDelete
+}) {
+  const meta = ELEMENT_META[worm.element];
+  const [showDelete, setShowDelete] = reactExports.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      layout: true,
+      initial: { opacity: 0, scale: 0.8, y: 20 },
+      animate: { opacity: 1, scale: 1, y: 0 },
+      exit: { opacity: 0, scale: 0.7, y: -10 },
+      transition: { duration: 0.3, delay: index2 * 0.05 },
+      className: `worm-card relative p-3 flex flex-col items-center gap-2 border-2 select-none
+        ${isSelected ? "selected" : ""} ${meta.bgClass} ${meta.borderClass}`,
+      onClick: () => onSelect(worm.id),
+      onMouseEnter: () => setShowDelete(true),
+      onMouseLeave: () => setShowDelete(false),
+      "data-ocid": `worm.item.${index2 + 1}`,
+      children: [
+        isSelected && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-2 right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-md z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary-foreground text-xs font-bold", children: "✓" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showDelete && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.button,
+          {
+            type: "button",
+            initial: { opacity: 0, scale: 0.6 },
+            animate: { opacity: 1, scale: 1 },
+            exit: { opacity: 0, scale: 0.6 },
+            className: "absolute top-2 left-2 w-6 h-6 bg-destructive rounded-full flex items-center justify-center shadow-md z-10 text-white hover:bg-red-600 transition-colors",
+            onClick: (e) => {
+              e.stopPropagation();
+              onDelete(worm.id);
+            },
+            "aria-label": "Xóa sâu",
+            "data-ocid": `worm.delete_button.${index2 + 1}`,
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-bold leading-none", children: "×" })
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: `text-xs font-bold px-2 py-0.5 rounded-full ${meta.borderClass} border ${meta.textClass} bg-card/80`,
+            children: [
+              meta.emoji,
+              " ",
+              meta.name
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1.5", children: ["head", "body", "tail"].map((part) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-0.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "body-part w-10 h-10 p-0.5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            WormPart,
+            {
+              element: worm[part].element,
+              mutation: worm[part].mutation,
+              partName: part,
+              size: 32
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[9px] font-semibold text-muted-foreground", children: PART_LABELS[part] })
+        ] }, part)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1", children: ["head", "body", "tail"].map((part) => {
+          const mm = MUTATION_META[worm[part].mutation];
+          return /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: "text-[10px] bg-card/70 border border-border rounded-full px-1.5 py-0.5 font-medium",
+              children: mm.emoji
+            },
+            part
+          );
+        }) })
+      ]
+    }
+  );
+}
+function ParentSlot({ worm, slot }) {
+  if (worm) {
+    const meta = ELEMENT_META[worm.element];
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: `flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 ${meta.bgClass} ${meta.borderClass}`,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            WormPart,
+            {
+              element: worm.head.element,
+              mutation: worm.head.mutation,
+              partName: "head",
+              size: 24
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: `text-xs font-bold ${meta.textClass} truncate max-w-[70px]`,
+              children: meta.name
+            }
+          )
+        ]
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": slot,
+      className: "flex items-center justify-center w-16 h-10 rounded-xl border-2 border-dashed border-border text-muted-foreground text-xs",
+      children: "?"
+    }
+  );
+}
+function BreedingPanel({
+  worms,
+  selectedIds,
+  onBreed,
+  onBreedSelf,
+  onClear,
+  isBreeding,
+  atMax,
+  isSoloMode
+}) {
+  const p1 = worms.find((w2) => w2.id === selectedIds[0]);
+  const p2 = isSoloMode ? p1 : worms.find((w2) => w2.id === selectedIds[1]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    motion.div,
+    {
+      initial: { y: 80, opacity: 0 },
+      animate: { y: 0, opacity: 1 },
+      exit: { y: 80, opacity: 0 },
+      className: "fixed bottom-0 left-0 right-0 z-50 pb-safe",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-card border-t-2 border-primary shadow-xl px-4 py-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-2xl mx-auto flex items-center gap-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 flex-1 min-w-0", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-bold text-foreground whitespace-nowrap", children: isSoloMode ? "Tự lai:" : "Nhân giống:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ParentSlot, { worm: p1, slot: "parent-1" }),
+          isSoloMode ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-lg", title: "Tự lai với chính mình", children: "🔁" }) : null,
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ParentSlot, { worm: p2, slot: "parent-2" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-shrink-0", children: [
+          atMax && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-destructive font-semibold", children: "🔴 Tổ đầy!" }),
+          isSoloMode ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: onBreedSelf,
+              disabled: isBreeding || atMax,
+              className: "breed-button text-sm",
+              "data-ocid": "worm.breed_self_button",
+              children: isBreeding ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex items-center gap-1.5", children: "⏳ Đang ấp..." }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex items-center gap-1.5", children: "🔁 Tự Lai" })
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: () => p1 && p2 && onBreed(p1, p2),
+              disabled: !p1 || !p2 || isBreeding || atMax,
+              className: "breed-button text-sm",
+              "data-ocid": "worm.breed_button",
+              children: isBreeding ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex items-center gap-1.5", children: "⏳ Đang ấp..." }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex items-center gap-1.5", children: "🥚 Nhân Giống" })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: onClear,
+              className: "px-4 py-2 rounded-full border-2 border-border text-sm font-semibold text-foreground/70 hover:bg-muted transition-all",
+              "data-ocid": "worm.deselect_button",
+              children: "Hủy"
+            }
+          )
+        ] })
+      ] }) })
+    }
+  );
+}
 function AppInner() {
-  const [activeRoomIdx, setActiveRoomIdx] = reactExports.useState(0);
-  const [dragOverCell, setDragOverCell] = reactExports.useState(null);
-  const draggingItemRef = reactExports.useRef(null);
   const {
-    rooms,
-    items,
+    worms,
     isLoading,
-    addItem,
-    removeItem: removeItem2,
-    placeItem,
-    removeFromGrid,
-    undo,
-    canUndo,
-    resetRoom
-  } = useHomeInventory();
-  const activeRoom = rooms[activeRoomIdx] ?? rooms[0];
-  const handleAddItem = reactExports.useCallback(
-    (name, emoji, roomId) => {
-      addItem(name, emoji, roomId);
-    },
-    [addItem]
-  );
-  const handleDrop = reactExports.useCallback(
-    (gridX, gridY) => {
-      if (!draggingItemRef.current || !activeRoom) return;
-      placeItem(draggingItemRef.current.id, activeRoom.id, gridX, gridY);
-      draggingItemRef.current = null;
-      setDragOverCell(null);
-    },
-    [placeItem, activeRoom]
-  );
-  const totalItems = items.length;
-  const roomItems = activeRoom ? items.filter((i) => i.roomId === activeRoom.id) : [];
-  const placedCount = roomItems.filter((i) => i.gridX !== null).length;
+    selectedIds,
+    toggleSelect,
+    clearSelection,
+    breed,
+    breedSelf,
+    deleteWorm,
+    isBreeding
+  } = useWormGame();
+  const wormCount = worms.length;
+  const atMax = wormCount >= MAX_WORMS;
+  const isSoloMode = wormCount === 1;
+  const twoSelected = selectedIds.length === 2;
+  const showBreedPanel = twoSelected || isSoloMode;
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen bg-background flex flex-col", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "bg-card border-b-2 border-border shadow-md sticky top-0 z-30", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 py-3 flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4 py-3 flex items-center justify-between", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 rounded-2xl bg-primary flex items-center justify-center shadow-md", children: /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-5 h-5 text-primary-foreground" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-3xl animate-pulse-glow", children: "🐛" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display text-xl font-extrabold text-foreground leading-tight", children: "Quản Lý Đồ Nhà" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/50 font-body", children: "Kéo thả đồ vật vào căn phòng của bạn 🏮" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display text-xl font-extrabold text-foreground leading-tight", children: "Sâu Ma Thuật" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/50 font-body", children: isSoloMode ? "Chỉ 1 con → tự lai để tạo biến thể mới!" : "Chọn 2 con sâu → nhân giống biến thể mới!" })
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
+            "div",
             {
-              type: "button",
-              onClick: undo,
-              disabled: !canUndo,
-              className: "flex items-center gap-1.5 px-3 py-2 rounded-xl bg-muted border border-border text-sm font-bold text-foreground/70 hover:text-foreground hover:bg-muted/80 disabled:opacity-30 disabled:cursor-not-allowed transition-all",
-              title: "Hoàn tác",
-              "data-ocid": "app.undo_button",
+              className: `rounded-2xl px-4 py-2 border-2 text-center ${atMax ? "bg-destructive/10 border-destructive" : "bg-primary/10 border-primary/40"}`,
+              "data-ocid": "worm.counter",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Undo2, { className: "w-4 h-4" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden sm:inline", children: "Hoàn tác" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: `text-xl font-extrabold leading-none font-display ${atMax ? "text-destructive" : "text-primary"}`,
+                    children: wormCount
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-foreground/50 font-bold text-sm", children: [
+                  " ",
+                  "/ ",
+                  MAX_WORMS
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: `text-[10px] font-body mt-0.5 ${atMax ? "text-destructive" : "text-muted-foreground"}`,
+                    children: atMax ? "🔴 Tổ đầy!" : "🥚 Tổ Sâu"
+                  }
+                )
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              onClick: () => activeRoom && resetRoom(activeRoom.id),
-              className: "flex items-center gap-1.5 px-3 py-2 rounded-xl bg-muted border border-border text-sm font-bold text-foreground/70 hover:text-red-600 hover:bg-red-50 transition-all",
-              title: "Dọn sạch phòng",
-              "data-ocid": "app.reset_button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(RotateCcw, { className: "w-4 h-4" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden sm:inline", children: "Dọn phòng" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-muted/60 rounded-xl px-3 py-1.5 text-center border border-border ml-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-lg font-extrabold text-primary leading-none", children: totalItems }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[10px] text-foreground/50 font-body", children: "Đồ vật" })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-muted/60 rounded-xl px-3 py-1.5 text-center border border-border", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-lg font-extrabold text-foreground leading-none", children: rooms.length }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[10px] text-foreground/50 font-body", children: "Phòng" })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden sm:block w-28", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-[10px] text-muted-foreground mb-1 font-body text-right", children: [
+              wormCount,
+              "/",
+              MAX_WORMS
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-2.5 rounded-full bg-muted overflow-hidden border border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              motion.div,
+              {
+                className: "h-full rounded-full bg-primary",
+                initial: { width: 0 },
+                animate: { width: `${wormCount / MAX_WORMS * 100}%` },
+                transition: { duration: 0.5 }
+              }
+            ) })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        RoomTabs,
-        {
-          rooms,
-          activeRoomIdx,
-          items,
-          onSelect: setActiveRoomIdx
-        }
-      ) })
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4 pb-3 flex items-center gap-2 flex-wrap", children: [
+        Object.values(Element$1).map((el) => {
+          const m2 = ELEMENT_META[el];
+          const count = worms.filter((w2) => w2.element === el).length;
+          return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: `flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full border ${m2.bgClass} ${m2.borderClass} ${m2.textClass}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m2.emoji }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m2.name }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "bg-card/80 rounded-full px-1.5 py-0 font-bold", children: count })
+              ]
+            },
+            el
+          );
+        }),
+        selectedIds.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "ml-auto text-xs text-primary font-bold bg-primary/10 border border-primary/30 rounded-full px-3 py-1", children: isSoloMode ? "✓ Sẵn sàng tự lai!" : `✓ Đã chọn ${selectedIds.length}/2 con` })
+      ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1 max-w-7xl mx-auto w-full px-4 py-6", children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1 max-w-5xl mx-auto w-full px-4 py-6 pb-24", children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         className: "flex flex-col items-center justify-center py-20 gap-4",
-        "data-ocid": "app.loading_state",
+        "data-ocid": "worm.loading_state",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-5xl animate-spin", children: "⚙️" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-bold text-foreground/60", children: "Đang tải dữ liệu..." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-6xl animate-bounce", children: "🥚" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-bold text-foreground/60 font-display text-lg", children: "Đang thức dậy tổ sâu..." })
         ]
       }
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: activeRoom && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    ) : worms.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.div,
       {
-        initial: { opacity: 0, y: 16 },
+        initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -16 },
-        transition: { duration: 0.25 },
-        className: "flex flex-col lg:flex-row gap-5",
+        className: "flex flex-col items-center justify-center py-16 gap-6",
+        "data-ocid": "worm.empty_state",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("aside", { className: "w-full lg:w-72 flex-shrink-0 flex flex-col gap-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card rounded-3xl border-2 border-border shadow-md p-4", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display font-extrabold text-base text-foreground mb-3 flex items-center gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xl", children: activeRoom.emoji }),
-                activeRoom.name,
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-auto text-xs bg-primary/10 text-primary rounded-full px-2 py-0.5 font-bold", children: [
-                  placedCount,
-                  "/",
-                  roomItems.length
-                ] })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(AddItemForm, { roomId: activeRoom.id, onAdd: handleAddItem })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-card rounded-3xl border-2 border-border shadow-md p-4 flex-1 min-h-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ItemSidebar,
-              {
-                items,
-                room: activeRoom,
-                onRemove: removeItem2,
-                onDragStart: (item) => {
-                  draggingItemRef.current = item;
-                }
-              }
-            ) })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mb-3", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display font-extrabold text-lg text-foreground", children: [
-                activeRoom.emoji,
-                " ",
-                activeRoom.name
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/50", children: "Kéo thả đồ vật vào ô trống 🎯" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              RoomGrid,
-              {
-                items,
-                room: activeRoom,
-                dragOverCell,
-                onDrop: handleDrop,
-                onDragOver: (x3, y2) => setDragOverCell({ x: x3, y: y2 }),
-                onDragLeave: () => setDragOverCell(null),
-                onDragStartItem: (item) => {
-                  draggingItemRef.current = item;
-                },
-                onRemoveItem: removeFromGrid
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-center text-xs text-foreground/40 mt-3 font-body", children: "⭐ Nhập tên đồ vật — biểu tượng sẽ tự động xuất hiện! Cầm kéo vào ô để xếp." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "img",
+            {
+              src: "/assets/generated/worm-nest-hero.dim_800x400.png",
+              alt: "Tổ sâu trống",
+              className: "w-64 h-auto rounded-3xl shadow-lg opacity-80"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display text-2xl font-extrabold text-foreground mb-2", children: "🐣 Tổ còn trống!" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body", children: "App đang kết nối với tổ sâu..." })
           ] })
         ]
-      },
-      activeRoom.id
-    ) }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "bg-card border-t border-border py-4 text-center mt-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-foreground/40 font-body", children: [
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mb-4 font-body", children: isSoloMode ? "✨ Chỉ có 1 con! Ấn vào sâu để chọn → tự lai với chính nó 🔁" : "✨ Ấn vào sâu để chọn làm bố/mẹ • Hover sâu và ấn × để xóa" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.div,
+        {
+          layout: true,
+          className: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "popLayout", children: worms.map((worm, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            WormCard,
+            {
+              worm,
+              index: idx,
+              isSelected: selectedIds.some((id2) => id2 === worm.id),
+              onSelect: toggleSelect,
+              onDelete: deleteWorm
+            },
+            String(worm.id)
+          )) })
+        }
+      )
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "bg-card border-t border-border py-3 text-center z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-foreground/40 font-body", children: [
       "© ",
       (/* @__PURE__ */ new Date()).getFullYear(),
-      ". Built with ♥ using",
+      ". Built with ❤ using",
       " ",
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "a",
@@ -37182,7 +36825,20 @@ function AppInner() {
         }
       )
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { position: "bottom-right", richColors: true })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showBreedPanel && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      BreedingPanel,
+      {
+        worms,
+        selectedIds: isSoloMode && worms[0] ? [worms[0].id] : selectedIds,
+        onBreed: breed,
+        onBreedSelf: breedSelf,
+        onClear: clearSelection,
+        isBreeding,
+        atMax,
+        isSoloMode
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { position: "top-center", richColors: true })
   ] });
 }
 function App() {

@@ -89,210 +89,305 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface GridPos {
-    col: bigint;
-    row: bigint;
+export interface BodyPart {
+    element: Element;
+    mutation: MutationVariant;
 }
-export type RoomId = bigint;
-export interface Room {
-    id: RoomId;
-    grid: Array<PlacedItem>;
-    name: string;
-    items: Array<Item>;
+export type WormId = bigint;
+export interface Worm {
+    id: WormId;
+    element: Element;
+    body: BodyPart;
+    head: BodyPart;
+    tail: BodyPart;
 }
-export interface Item {
-    id: ItemId;
-    name: string;
-    color?: string;
-    emoji: string;
+export interface NewWorm {
+    element: Element;
+    body: BodyPart;
+    head: BodyPart;
+    tail: BodyPart;
 }
-export interface PlacedItem {
-    pos: GridPos;
-    itemId: ItemId;
+export enum Element {
+    Grass = "Grass",
+    Water = "Water",
+    Electric = "Electric",
+    Earth = "Earth"
 }
-export type ItemId = bigint;
+export enum MutationVariant {
+    Gradient = "Gradient",
+    Solid = "Solid",
+    Metallic = "Metallic",
+    Spotted = "Spotted",
+    Striped = "Striped"
+}
 export interface backendInterface {
-    addItem(roomId: RoomId, name: string, emoji: string, color: string | null): Promise<Item | null>;
-    createRoom(name: string): Promise<Room>;
-    deleteRoom(roomId: RoomId): Promise<boolean>;
-    getRooms(): Promise<Array<Room>>;
-    moveItem(roomId: RoomId, fromPos: GridPos, toPos: GridPos): Promise<boolean>;
-    placeItem(roomId: RoomId, itemId: ItemId, pos: GridPos): Promise<boolean>;
-    removeFromGrid(roomId: RoomId, pos: GridPos): Promise<boolean>;
-    removeItem(roomId: RoomId, itemId: ItemId): Promise<boolean>;
+    addWorm(newWorm: NewWorm): Promise<{
+        __kind__: "ok";
+        ok: WormId;
+    } | {
+        __kind__: "err";
+        err: string;
+    }>;
+    deleteWorm(id: WormId): Promise<{
+        __kind__: "ok";
+        ok: null;
+    } | {
+        __kind__: "err";
+        err: string;
+    }>;
+    getWorms(): Promise<Array<Worm>>;
 }
-import type { Item as _Item, ItemId as _ItemId, PlacedItem as _PlacedItem, Room as _Room, RoomId as _RoomId } from "./declarations/backend.did.d.ts";
+import type { BodyPart as _BodyPart, Element as _Element, MutationVariant as _MutationVariant, NewWorm as _NewWorm, Worm as _Worm, WormId as _WormId } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async addItem(arg0: RoomId, arg1: string, arg2: string, arg3: string | null): Promise<Item | null> {
+    async addWorm(arg0: NewWorm): Promise<{
+        __kind__: "ok";
+        ok: WormId;
+    } | {
+        __kind__: "err";
+        err: string;
+    }> {
         if (this.processError) {
             try {
-                const result = await this.actor.addItem(arg0, arg1, arg2, to_candid_opt_n1(this._uploadFile, this._downloadFile, arg3));
-                return from_candid_opt_n2(this._uploadFile, this._downloadFile, result);
+                const result = await this.actor.addWorm(to_candid_NewWorm_n1(this._uploadFile, this._downloadFile, arg0));
+                return from_candid_variant_n9(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.addItem(arg0, arg1, arg2, to_candid_opt_n1(this._uploadFile, this._downloadFile, arg3));
-            return from_candid_opt_n2(this._uploadFile, this._downloadFile, result);
+            const result = await this.actor.addWorm(to_candid_NewWorm_n1(this._uploadFile, this._downloadFile, arg0));
+            return from_candid_variant_n9(this._uploadFile, this._downloadFile, result);
         }
     }
-    async createRoom(arg0: string): Promise<Room> {
+    async deleteWorm(arg0: WormId): Promise<{
+        __kind__: "ok";
+        ok: null;
+    } | {
+        __kind__: "err";
+        err: string;
+    }> {
         if (this.processError) {
             try {
-                const result = await this.actor.createRoom(arg0);
-                return from_candid_Room_n6(this._uploadFile, this._downloadFile, result);
+                const result = await this.actor.deleteWorm(arg0);
+                return from_candid_variant_n10(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.createRoom(arg0);
-            return from_candid_Room_n6(this._uploadFile, this._downloadFile, result);
+            const result = await this.actor.deleteWorm(arg0);
+            return from_candid_variant_n10(this._uploadFile, this._downloadFile, result);
         }
     }
-    async deleteRoom(arg0: RoomId): Promise<boolean> {
+    async getWorms(): Promise<Array<Worm>> {
         if (this.processError) {
             try {
-                const result = await this.actor.deleteRoom(arg0);
-                return result;
+                const result = await this.actor.getWorms();
+                return from_candid_vec_n11(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.deleteRoom(arg0);
-            return result;
-        }
-    }
-    async getRooms(): Promise<Array<Room>> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.getRooms();
-                return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getRooms();
-            return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
-        }
-    }
-    async moveItem(arg0: RoomId, arg1: GridPos, arg2: GridPos): Promise<boolean> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.moveItem(arg0, arg1, arg2);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.moveItem(arg0, arg1, arg2);
-            return result;
-        }
-    }
-    async placeItem(arg0: RoomId, arg1: ItemId, arg2: GridPos): Promise<boolean> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.placeItem(arg0, arg1, arg2);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.placeItem(arg0, arg1, arg2);
-            return result;
-        }
-    }
-    async removeFromGrid(arg0: RoomId, arg1: GridPos): Promise<boolean> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.removeFromGrid(arg0, arg1);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.removeFromGrid(arg0, arg1);
-            return result;
-        }
-    }
-    async removeItem(arg0: RoomId, arg1: ItemId): Promise<boolean> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.removeItem(arg0, arg1);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.removeItem(arg0, arg1);
-            return result;
+            const result = await this.actor.getWorms();
+            return from_candid_vec_n11(this._uploadFile, this._downloadFile, result);
         }
     }
 }
-function from_candid_Item_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Item): Item {
-    return from_candid_record_n4(_uploadFile, _downloadFile, value);
+function from_candid_BodyPart_n16(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _BodyPart): BodyPart {
+    return from_candid_record_n17(_uploadFile, _downloadFile, value);
 }
-function from_candid_Room_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Room): Room {
-    return from_candid_record_n7(_uploadFile, _downloadFile, value);
+function from_candid_Element_n14(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Element): Element {
+    return from_candid_variant_n15(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_Item]): Item | null {
-    return value.length === 0 ? null : from_candid_Item_n3(_uploadFile, _downloadFile, value[0]);
+function from_candid_MutationVariant_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _MutationVariant): MutationVariant {
+    return from_candid_variant_n19(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
-    return value.length === 0 ? null : value[0];
+function from_candid_Worm_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Worm): Worm {
+    return from_candid_record_n13(_uploadFile, _downloadFile, value);
 }
-function from_candid_record_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    id: _ItemId;
-    name: string;
-    color: [] | [string];
-    emoji: string;
+function from_candid_record_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: _WormId;
+    element: _Element;
+    body: _BodyPart;
+    head: _BodyPart;
+    tail: _BodyPart;
 }): {
-    id: ItemId;
-    name: string;
-    color?: string;
-    emoji: string;
+    id: WormId;
+    element: Element;
+    body: BodyPart;
+    head: BodyPart;
+    tail: BodyPart;
 } {
     return {
         id: value.id,
-        name: value.name,
-        color: record_opt_to_undefined(from_candid_opt_n5(_uploadFile, _downloadFile, value.color)),
-        emoji: value.emoji
+        element: from_candid_Element_n14(_uploadFile, _downloadFile, value.element),
+        body: from_candid_BodyPart_n16(_uploadFile, _downloadFile, value.body),
+        head: from_candid_BodyPart_n16(_uploadFile, _downloadFile, value.head),
+        tail: from_candid_BodyPart_n16(_uploadFile, _downloadFile, value.tail)
     };
 }
-function from_candid_record_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    id: _RoomId;
-    grid: Array<_PlacedItem>;
-    name: string;
-    items: Array<_Item>;
+function from_candid_record_n17(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    element: _Element;
+    mutation: _MutationVariant;
 }): {
-    id: RoomId;
-    grid: Array<PlacedItem>;
-    name: string;
-    items: Array<Item>;
+    element: Element;
+    mutation: MutationVariant;
 } {
     return {
-        id: value.id,
-        grid: value.grid,
-        name: value.name,
-        items: from_candid_vec_n8(_uploadFile, _downloadFile, value.items)
+        element: from_candid_Element_n14(_uploadFile, _downloadFile, value.element),
+        mutation: from_candid_MutationVariant_n18(_uploadFile, _downloadFile, value.mutation)
     };
 }
-function from_candid_vec_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Item>): Array<Item> {
-    return value.map((x)=>from_candid_Item_n3(_uploadFile, _downloadFile, x));
+function from_candid_variant_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: null;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: null;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
 }
-function from_candid_vec_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Room>): Array<Room> {
-    return value.map((x)=>from_candid_Room_n6(_uploadFile, _downloadFile, x));
+function from_candid_variant_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    Grass: null;
+} | {
+    Water: null;
+} | {
+    Electric: null;
+} | {
+    Earth: null;
+}): Element {
+    return "Grass" in value ? Element.Grass : "Water" in value ? Element.Water : "Electric" in value ? Element.Electric : "Earth" in value ? Element.Earth : value;
 }
-function to_candid_opt_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: string | null): [] | [string] {
-    return value === null ? candid_none() : candid_some(value);
+function from_candid_variant_n19(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    Gradient: null;
+} | {
+    Solid: null;
+} | {
+    Metallic: null;
+} | {
+    Spotted: null;
+} | {
+    Striped: null;
+}): MutationVariant {
+    return "Gradient" in value ? MutationVariant.Gradient : "Solid" in value ? MutationVariant.Solid : "Metallic" in value ? MutationVariant.Metallic : "Spotted" in value ? MutationVariant.Spotted : "Striped" in value ? MutationVariant.Striped : value;
+}
+function from_candid_variant_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: _WormId;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: WormId;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_vec_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Worm>): Array<Worm> {
+    return value.map((x)=>from_candid_Worm_n12(_uploadFile, _downloadFile, x));
+}
+function to_candid_BodyPart_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: BodyPart): _BodyPart {
+    return to_candid_record_n6(_uploadFile, _downloadFile, value);
+}
+function to_candid_Element_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Element): _Element {
+    return to_candid_variant_n4(_uploadFile, _downloadFile, value);
+}
+function to_candid_MutationVariant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: MutationVariant): _MutationVariant {
+    return to_candid_variant_n8(_uploadFile, _downloadFile, value);
+}
+function to_candid_NewWorm_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: NewWorm): _NewWorm {
+    return to_candid_record_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_record_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    element: Element;
+    body: BodyPart;
+    head: BodyPart;
+    tail: BodyPart;
+}): {
+    element: _Element;
+    body: _BodyPart;
+    head: _BodyPart;
+    tail: _BodyPart;
+} {
+    return {
+        element: to_candid_Element_n3(_uploadFile, _downloadFile, value.element),
+        body: to_candid_BodyPart_n5(_uploadFile, _downloadFile, value.body),
+        head: to_candid_BodyPart_n5(_uploadFile, _downloadFile, value.head),
+        tail: to_candid_BodyPart_n5(_uploadFile, _downloadFile, value.tail)
+    };
+}
+function to_candid_record_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    element: Element;
+    mutation: MutationVariant;
+}): {
+    element: _Element;
+    mutation: _MutationVariant;
+} {
+    return {
+        element: to_candid_Element_n3(_uploadFile, _downloadFile, value.element),
+        mutation: to_candid_MutationVariant_n7(_uploadFile, _downloadFile, value.mutation)
+    };
+}
+function to_candid_variant_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Element): {
+    Grass: null;
+} | {
+    Water: null;
+} | {
+    Electric: null;
+} | {
+    Earth: null;
+} {
+    return value == Element.Grass ? {
+        Grass: null
+    } : value == Element.Water ? {
+        Water: null
+    } : value == Element.Electric ? {
+        Electric: null
+    } : value == Element.Earth ? {
+        Earth: null
+    } : value;
+}
+function to_candid_variant_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: MutationVariant): {
+    Gradient: null;
+} | {
+    Solid: null;
+} | {
+    Metallic: null;
+} | {
+    Spotted: null;
+} | {
+    Striped: null;
+} {
+    return value == MutationVariant.Gradient ? {
+        Gradient: null
+    } : value == MutationVariant.Solid ? {
+        Solid: null
+    } : value == MutationVariant.Metallic ? {
+        Metallic: null
+    } : value == MutationVariant.Spotted ? {
+        Spotted: null
+    } : value == MutationVariant.Striped ? {
+        Striped: null
+    } : value;
 }
 export interface CreateActorOptions {
     agent?: Agent;

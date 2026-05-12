@@ -8,71 +8,99 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const RoomId = IDL.Nat;
-export const ItemId = IDL.Nat;
-export const Item = IDL.Record({
-  'id' : ItemId,
-  'name' : IDL.Text,
-  'color' : IDL.Opt(IDL.Text),
-  'emoji' : IDL.Text,
+export const Element = IDL.Variant({
+  'Grass' : IDL.Null,
+  'Water' : IDL.Null,
+  'Electric' : IDL.Null,
+  'Earth' : IDL.Null,
 });
-export const GridPos = IDL.Record({ 'col' : IDL.Nat, 'row' : IDL.Nat });
-export const PlacedItem = IDL.Record({ 'pos' : GridPos, 'itemId' : ItemId });
-export const Room = IDL.Record({
-  'id' : RoomId,
-  'grid' : IDL.Vec(PlacedItem),
-  'name' : IDL.Text,
-  'items' : IDL.Vec(Item),
+export const MutationVariant = IDL.Variant({
+  'Gradient' : IDL.Null,
+  'Solid' : IDL.Null,
+  'Metallic' : IDL.Null,
+  'Spotted' : IDL.Null,
+  'Striped' : IDL.Null,
+});
+export const BodyPart = IDL.Record({
+  'element' : Element,
+  'mutation' : MutationVariant,
+});
+export const NewWorm = IDL.Record({
+  'element' : Element,
+  'body' : BodyPart,
+  'head' : BodyPart,
+  'tail' : BodyPart,
+});
+export const WormId = IDL.Nat;
+export const Worm = IDL.Record({
+  'id' : WormId,
+  'element' : Element,
+  'body' : BodyPart,
+  'head' : BodyPart,
+  'tail' : BodyPart,
 });
 
 export const idlService = IDL.Service({
-  'addItem' : IDL.Func(
-      [RoomId, IDL.Text, IDL.Text, IDL.Opt(IDL.Text)],
-      [IDL.Opt(Item)],
+  'addWorm' : IDL.Func(
+      [NewWorm],
+      [IDL.Variant({ 'ok' : WormId, 'err' : IDL.Text })],
       [],
     ),
-  'createRoom' : IDL.Func([IDL.Text], [Room], []),
-  'deleteRoom' : IDL.Func([RoomId], [IDL.Bool], []),
-  'getRooms' : IDL.Func([], [IDL.Vec(Room)], []),
-  'moveItem' : IDL.Func([RoomId, GridPos, GridPos], [IDL.Bool], []),
-  'placeItem' : IDL.Func([RoomId, ItemId, GridPos], [IDL.Bool], []),
-  'removeFromGrid' : IDL.Func([RoomId, GridPos], [IDL.Bool], []),
-  'removeItem' : IDL.Func([RoomId, ItemId], [IDL.Bool], []),
+  'deleteWorm' : IDL.Func(
+      [WormId],
+      [IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text })],
+      [],
+    ),
+  'getWorms' : IDL.Func([], [IDL.Vec(Worm)], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
-  const RoomId = IDL.Nat;
-  const ItemId = IDL.Nat;
-  const Item = IDL.Record({
-    'id' : ItemId,
-    'name' : IDL.Text,
-    'color' : IDL.Opt(IDL.Text),
-    'emoji' : IDL.Text,
+  const Element = IDL.Variant({
+    'Grass' : IDL.Null,
+    'Water' : IDL.Null,
+    'Electric' : IDL.Null,
+    'Earth' : IDL.Null,
   });
-  const GridPos = IDL.Record({ 'col' : IDL.Nat, 'row' : IDL.Nat });
-  const PlacedItem = IDL.Record({ 'pos' : GridPos, 'itemId' : ItemId });
-  const Room = IDL.Record({
-    'id' : RoomId,
-    'grid' : IDL.Vec(PlacedItem),
-    'name' : IDL.Text,
-    'items' : IDL.Vec(Item),
+  const MutationVariant = IDL.Variant({
+    'Gradient' : IDL.Null,
+    'Solid' : IDL.Null,
+    'Metallic' : IDL.Null,
+    'Spotted' : IDL.Null,
+    'Striped' : IDL.Null,
+  });
+  const BodyPart = IDL.Record({
+    'element' : Element,
+    'mutation' : MutationVariant,
+  });
+  const NewWorm = IDL.Record({
+    'element' : Element,
+    'body' : BodyPart,
+    'head' : BodyPart,
+    'tail' : BodyPart,
+  });
+  const WormId = IDL.Nat;
+  const Worm = IDL.Record({
+    'id' : WormId,
+    'element' : Element,
+    'body' : BodyPart,
+    'head' : BodyPart,
+    'tail' : BodyPart,
   });
   
   return IDL.Service({
-    'addItem' : IDL.Func(
-        [RoomId, IDL.Text, IDL.Text, IDL.Opt(IDL.Text)],
-        [IDL.Opt(Item)],
+    'addWorm' : IDL.Func(
+        [NewWorm],
+        [IDL.Variant({ 'ok' : WormId, 'err' : IDL.Text })],
         [],
       ),
-    'createRoom' : IDL.Func([IDL.Text], [Room], []),
-    'deleteRoom' : IDL.Func([RoomId], [IDL.Bool], []),
-    'getRooms' : IDL.Func([], [IDL.Vec(Room)], []),
-    'moveItem' : IDL.Func([RoomId, GridPos, GridPos], [IDL.Bool], []),
-    'placeItem' : IDL.Func([RoomId, ItemId, GridPos], [IDL.Bool], []),
-    'removeFromGrid' : IDL.Func([RoomId, GridPos], [IDL.Bool], []),
-    'removeItem' : IDL.Func([RoomId, ItemId], [IDL.Bool], []),
+    'deleteWorm' : IDL.Func(
+        [WormId],
+        [IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text })],
+        [],
+      ),
+    'getWorms' : IDL.Func([], [IDL.Vec(Worm)], []),
   });
 };
 

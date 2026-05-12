@@ -1,13 +1,12 @@
-import Map "mo:core/Map";
 import List "mo:core/List";
-import Principal "mo:core/Principal";
-import InventoryTypes "types/inventory";
-import InventoryMixin "mixins/inventory-api";
-import Migration "migration";
+import WormTypes "types/worm";
+import WormMixin "mixins/worm-api";
 
-(with migration = Migration.run)
+
+
 actor {
-  let userRooms = Map.empty<Principal, List.List<InventoryTypes.RoomInternal>>();
+  let worms = List.empty<WormTypes.Worm>();
+  let state = { var nextWormId : Nat = 1 };
 
-  include InventoryMixin(userRooms);
+  include WormMixin(worms, state);
 }
